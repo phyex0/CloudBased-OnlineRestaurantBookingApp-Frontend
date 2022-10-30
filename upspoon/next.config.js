@@ -5,6 +5,15 @@ const nextConfig = {
   experimental: {
     outputStandalone: true,
   },
+  async redirects() {
+    return [
+      {
+        source: "/restaurant",
+        destination: "/restaurant/login",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

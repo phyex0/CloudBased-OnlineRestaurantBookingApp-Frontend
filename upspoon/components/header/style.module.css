@@ -1,0 +1,5 @@
+.container {
+    @apply
+    border
+    flex items-center justify-between px-4
+}

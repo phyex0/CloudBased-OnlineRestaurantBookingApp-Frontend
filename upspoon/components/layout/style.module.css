@@ -1,0 +1,13 @@
+.layoutUserContainer {
+    @apply
+    grid grid-rows-layoutUser
+}
+
+.layoutRestaurantContainer {
+    @apply
+    grid grid-rows-layoutRestaurant
+}
+
+.mainLayout {
+
+}

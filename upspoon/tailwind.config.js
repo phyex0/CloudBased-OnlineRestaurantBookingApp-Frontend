@@ -24,6 +24,9 @@ module.exports = {
         layoutRestaurant: `100px minmax(calc(100vh - 200px), 1fr) 100px`,
         layoutUser: `100px minmax(calc(100vh - 300px), 1fr) 200px`,
       },
+      backgroundImage: {
+        "main-bg": "url('/images/login-bg.png')",
+      },
     },
   },
   variants: {

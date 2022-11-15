@@ -30,7 +30,7 @@ const MyApp = ({ Component, pageProps }) => {
   return (
     <Provider store={store}>
       <StoreProvider>
-        <ThemeProvider attribute="class">
+        <ThemeProvider attribute="class" defaultTheme="light">
           <Layout>
             <Component {...pageProps} />
           </Layout>

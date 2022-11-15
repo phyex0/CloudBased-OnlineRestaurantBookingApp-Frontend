@@ -1,0 +1,17 @@
+.container {
+    @apply
+    flex
+    justify-between
+    items-center
+    px-16
+    bg-lightGray
+}
+
+.footerTitle {
+    @apply
+    text-2xl
+    font-bold
+    text-gray-600 
+    tracking-widest
+    italic
+}

@@ -1,9 +1,17 @@
 import styles from "./style.module.css";
 
-const UpInput = ({ className, value, placeholder = "", ...props }) => {
+const UpInput = ({
+  className,
+  type = "text",
+  value,
+  name,
+  placeholder = "",
+  ...props
+}) => {
   return (
     <input
-      type="text"
+      type={type}
+      name={name}
       className={[styles.input, className].join(" ")}
       placeholder={placeholder}
       value={value}

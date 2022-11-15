@@ -1,5 +1,6 @@
 .input {
     @apply
-    w-96
+    w-full
     h-14
+    px-3
 }

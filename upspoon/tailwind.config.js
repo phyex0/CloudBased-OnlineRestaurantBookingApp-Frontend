@@ -21,11 +21,14 @@ module.exports = {
     extend: {
       gridTemplateRows: {
         // Complex site-specific row configuration
-        layoutRestaurant: `100px minmax(calc(100vh - 200px), 1fr) 100px`,
-        layoutUser: `100px minmax(calc(100vh - 300px), 1fr) 200px`,
+        layoutRestaurant: `minmax(calc(100vh - 100px), 1fr) 100px`, // main, footer
+        layoutUser: `100px minmax(calc(100vh - 300px), 1fr) 200px`, // header, main, footer
       },
       backgroundImage: {
         "main-bg": "url('/images/login-bg.png')",
+      },
+      colors: {
+        lightGray: "#F5F5F5",
       },
     },
   },

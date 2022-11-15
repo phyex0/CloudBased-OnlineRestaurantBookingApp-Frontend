@@ -11,3 +11,13 @@
 .mainLayout {
 
 }
+
+.userHeader {
+    @apply
+    block
+}
+
+.restaurantHeader {
+    @apply
+    hidden
+}

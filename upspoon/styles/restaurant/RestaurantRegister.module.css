@@ -1,0 +1,34 @@
+.container {
+    @apply
+    flex
+
+}
+
+.leftArea {
+ 
+}
+
+
+.rightArea {
+    @apply
+    bg-main-bg
+}
+
+.rightArea img {
+    @apply
+    w-full
+}
+
+.rightAreaHeading {
+    @apply
+    text-2xl
+    font-bold
+    text-center
+    text-white
+    mt-4
+}
+
+.rightAreaText {
+    @apply
+    text-left
+}

@@ -26,9 +26,13 @@ const Layout = ({ children }) => {
             : styles.layoutRestaurantContainer
         }
       >
-        <Header className="bg-red-400" />
+        <Header
+          className={
+            isUser(router.asPath) ? styles.userHeader : styles.restaurantHeader
+          }
+        />
         <main className={styles.mainLayout}>{children}</main>
-        <Footer className="bg-blue-300" />
+        <Footer />
       </div>
     </>
   );

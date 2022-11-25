@@ -26,9 +26,14 @@ module.exports = {
       },
       backgroundImage: {
         "main-bg": "url('/images/login-bg.png')",
+        spoon: "url('/images/spoon.webp')",
+        "food-bg": "url('/images/home-bg.jpeg')",
       },
       colors: {
         lightGray: "#F5F5F5",
+      },
+      backgroundPosition: {
+        "main-right": "right -50%",
       },
     },
   },

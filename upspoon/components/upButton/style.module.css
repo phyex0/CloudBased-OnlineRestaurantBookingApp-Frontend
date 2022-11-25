@@ -1,13 +1,11 @@
 .button {
     @apply
-    cursor-pointer
-    bg-transparent
-    text-black
     rounded-full
     flex
     items-center
     justify-center
     transition-all
+    duration-300
     no-underline
     hover:text-gray-600
     hover:bg-slate-300

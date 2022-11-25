@@ -36,11 +36,22 @@
   @apply
   rounded-md
   border border-gray-300
+  w-full
 }
 
 .emailInput {
+  
+}
+
+
+.loginSubmitButtonDisabled {
   @apply
-  mb-4
+  cursor-not-allowed
+  border rounded-md
+bg-gray-500 hover:bg-gray-400 transition-all duration-100
+ text-white
+  mb-6 mt-4
+  w-full py-2
 }
 
 .loginSubmitButton {
@@ -49,7 +60,7 @@
   bg-gray-500 hover:bg-gray-400 transition-all duration-100
   text-white
   mb-6 mt-4
-  cursor-pointer
+  cursor-pointer w-full py-2
 }
 
 .linkContainer {
@@ -79,4 +90,11 @@
   text-center
   text-white
   mt-4
+}
+
+.errorField {
+  @apply
+  text-red-500
+  -mt-2
+  w-full
 }

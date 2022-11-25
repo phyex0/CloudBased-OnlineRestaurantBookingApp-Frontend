@@ -1,4 +1,85 @@
 .container {
   @apply
-  flex flex-col text-center
+  flex flex-col 
+  justify-center items-center
+  text-center 
+  h-full
+  relative
+}
+
+.mainBox {
+  @apply
+  flex justify-center items-center
+}
+
+.mainTextBox {
+  @apply
+  px-20
+  flex flex-col justify-center items-center
+}
+
+.heading {
+  @apply
+  text-5xl
+  font-semibold
+  leading-tight 
+}
+
+.subHeading {
+  @apply
+  text-base
+  mt-4 mb-6 leading-6 text-gray-600
+}
+
+.orderButton {
+  @apply
+  bg-black 
+  text-white 
+  font-bold 
+  py-3
+  px-6 
+  rounded-md
+}
+
+.homeImage {
+  @apply
+  w-3/5
+  h-full
+  rounded-xl
+ 
+}
+
+.partnerBox {
+  @apply
+  flex flex-col
+  px-96
+  mt-20 mb-10
+}
+
+.partnerHeading {
+  @apply
+  text-3xl
+  font-semibold
+  leading-tight 
+}
+
+.partnerTextBox {
+  @apply
+  mt-3
+  px-8 py-6
+  flex flex-col gap-4
+  shadow-2xl border text-left
+  rounded-lg
+}
+
+.partnerTextHeading {
+  @apply
+  text-xl font-medium
+}
+
+.bePartnerButton {
+  @apply
+  bg-gray-800 text-white
+  mx-auto px-6 py-2
+  rounded-lg border hover:bg-black
 }

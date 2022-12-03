@@ -1,11 +1,18 @@
+import { useEffect } from "react";
 import styles from "../styles/Home.module.css";
 import IconCover from "../components/IconCover";
 import UpButton from "../components/UpButton";
+import { getOrders } from "../api/order";
+import { createOrganization } from "../api/organization";
 // redux
 // import { useDispatch, useSelector } from "react-redux";
 // import { decrement, increment, incrementByAmount } from "../redux/counter";
 
 const Home = () => {
+  useEffect(() => {
+    createOrganization();
+  }, []);
+
   return (
     <div className={styles.container}>
       <div className={styles.mainBox}>

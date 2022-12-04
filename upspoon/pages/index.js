@@ -4,13 +4,15 @@ import IconCover from "../components/IconCover";
 import UpButton from "../components/UpButton";
 import { getOrders } from "../api/order";
 import { createOrganization } from "../api/organization";
+import { getRestaurantUser } from "../api/restaurant-user";
 // redux
 // import { useDispatch, useSelector } from "react-redux";
 // import { decrement, increment, incrementByAmount } from "../redux/counter";
 
 const Home = () => {
   useEffect(() => {
-    createOrganization();
+    //createOrganization();
+    getRestaurantUser();
   }, []);
 
   return (

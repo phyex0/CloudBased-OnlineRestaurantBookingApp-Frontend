@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const client = axios.create({
-  baseURL: `http://upspoon.com:8080/`,
+  baseURL: `http://localhost:8080/`,
   headers: {
     "Content-Type": "application/json",
   },

@@ -7,7 +7,7 @@ import { packageServices } from "../../constants/package-services";
 import Link from "next/link";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { restaurantLogin } from "../../api/restaurant";
+import { restaurantLogin } from "../../api/restaurant-user";
 
 const RestaurantLogin = () => {
   return (

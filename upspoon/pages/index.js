@@ -5,13 +5,9 @@ import UpButton from "../components/UpButton";
 import { getOrders } from "../api/order";
 import { createOrganization } from "../api/organization";
 import { getRestaurantUser } from "../api/restaurant-user";
-// redux
-// import { useDispatch, useSelector } from "react-redux";
-// import { decrement, increment, incrementByAmount } from "../redux/counter";
 
 const Home = () => {
   useEffect(() => {
-    //createOrganization();
     getRestaurantUser();
   }, []);
 
@@ -30,7 +26,7 @@ const Home = () => {
             inexpensive solution!
           </h4>
 
-          <UpButton href="/user" className={styles.orderButton}>
+          <UpButton href="/order" className={styles.orderButton}>
             Start Ordering!
           </UpButton>
         </div>

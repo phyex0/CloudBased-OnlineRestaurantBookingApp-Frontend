@@ -1,0 +1,54 @@
+.container {
+    @apply
+    bg-green-800 
+    px-8
+}
+
+.innerContainer {
+    @apply
+    h-14 
+    sm:h-11 
+    container 
+    mx-auto 
+    flex 
+    items-center 
+    justify-center 
+    sm:justify-between
+}
+
+.headerText{
+    @apply
+    hover:text-opacity-100 
+    transition-colors
+    text-white
+    text-opacity-80
+    text-sm
+    font-semibold
+    gap-x-2
+    flex
+    items-center
+}
+
+.headerGroup{
+    @apply
+    gap-x-8
+    hidden
+    sm:flex
+}
+
+.logoMark{
+    @apply
+    hover:transition-colors
+    text-white
+    text-xl 
+    font-semibold 
+    gap-x-2
+    flex items-center
+}
+
+.logoMarkContainer{
+    @apply
+    text-lg 
+    text-white 
+    font-semibold
+}

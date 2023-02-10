@@ -4,17 +4,19 @@ import Footer from "../components/Footer";
 import Header from "../components/Header";
 import AuthContext from "../context/Auth";
 
-const RootLayout = () => {
+const AuthLayout = () => {
   const { isAuth } = useContext(AuthContext);
 
   return (
-    <div className="bg-white dark:bg-black">
-      {/* <Header /> */}
+    <div className="bg-white dark:bg-black grid grid-rows-layoutSecond">
+      <Header />
       <main>
         <Outlet />
       </main>
+
+      <Footer />
     </div>
   );
 };
 
-export default RootLayout;
+export default AuthLayout;

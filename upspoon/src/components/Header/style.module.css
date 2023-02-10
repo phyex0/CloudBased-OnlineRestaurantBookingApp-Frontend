@@ -1,0 +1,7 @@
+.header {
+    @apply
+    bg-gray-200
+    flex justify-between
+    items-center
+    px-3
+}

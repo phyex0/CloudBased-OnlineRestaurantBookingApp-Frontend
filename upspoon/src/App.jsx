@@ -21,6 +21,7 @@ import UserLogin from "./pages/User/Login";
 import UserRegister from "./pages/User/Register";
 import RestaurantRegister from "./pages/Restaurant/Register";
 import RestaurantLogin from "./pages/Restaurant/Login";
+import AuthLayout from "./layouts/AuthLayout";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -42,22 +43,25 @@ const router = createBrowserRouter(
         </Route>
       </Route>
 
-      <Route
-        path="/user/login"
-        element={<UserLogin />} /*loader={loginLoader}*/
-      />
-      <Route
-        path="/user/register"
-        element={<UserRegister />} /*loader={loginLoader}*/
-      />
-      <Route
-        path="/restaurant/login"
-        element={<RestaurantLogin />} /*loader={loginLoader}*/
-      />
-      <Route
-        path="/restaurant/register"
-        element={<RestaurantRegister />} /*loader={loginLoader}*/
-      />
+      <Route element={<AuthLayout />}>
+        <Route
+          path="/user/login"
+          element={<UserLogin />} /*loader={loginLoader}*/
+        />
+        <Route
+          path="/user/register"
+          element={<UserRegister />} /*loader={loginLoader}*/
+        />
+        <Route
+          path="/restaurant/login"
+          element={<RestaurantLogin />} /*loader={loginLoader}*/
+        />
+        <Route
+          path="/restaurant/register"
+          element={<RestaurantRegister />} /*loader={loginLoader}*/
+        />
+      </Route>
+
       <Route path="*" element={<NotFound />} />
     </Route>
   )

@@ -8,7 +8,7 @@ const PrivateRestaurantRoutes = () => {
   return isAuthRestaurant ? (
     <Outlet />
   ) : (
-    <Navigate to="/user/login" replace={true} />
+    <Navigate to="/restaurant/login" replace={true} />
   );
 };
 

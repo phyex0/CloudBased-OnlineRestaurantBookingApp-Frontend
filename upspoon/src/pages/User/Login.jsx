@@ -79,7 +79,7 @@ const UserLogin = () => {
           isLoading={isSubmitting}
           type="submit"
         >
-          Submit
+          Login
         </Button>
         <Link
           as={RouterLink}

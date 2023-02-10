@@ -21,8 +21,11 @@ const UserRegister = () => {
   } = useForm();
 
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleClickPassword = () => setShowPassword(!showPassword);
+  const handleClickConfirmPassword = () =>
+    setShowConfirmPassword(!showConfirmPassword);
 
   const onSubmit = (values) => {
     // api call here
@@ -46,13 +49,13 @@ const UserRegister = () => {
           id="email"
           placeholder="Enter Email"
           type="email"
-          className="mb-8"
+          className="mb-6"
           {...register("email", {
             required: "This is required",
           })}
         />
         <FormLabel htmlFor="name">Password</FormLabel>
-        <InputGroup size="md">
+        <InputGroup size="md" className="mb-6">
           <Input
             pr="4.5rem"
             id="password"
@@ -69,6 +72,28 @@ const UserRegister = () => {
             </Button>
           </InputRightElement>
         </InputGroup>
+        <FormLabel htmlFor="name">Password Again</FormLabel>
+        <InputGroup size="md">
+          <Input
+            pr="4.5rem"
+            id="password"
+            type={showConfirmPassword ? "text" : "password"}
+            placeholder="Enter password"
+            {...register("confirm_password", {
+              required: true,
+              validate: (val) => {
+                if (watch("password") != val) {
+                  return "Your passwords do no match";
+                }
+              },
+            })}
+          />
+          <InputRightElement width="4.5rem">
+            <Button h="1.75rem" size="sm" onClick={handleClickConfirmPassword}>
+              {showConfirmPassword ? "Hide" : "Show"}
+            </Button>
+          </InputRightElement>
+        </InputGroup>
         <FormErrorMessage>
           {errors.name && errors.name.message}
         </FormErrorMessage>
@@ -80,14 +105,14 @@ const UserRegister = () => {
           isLoading={isSubmitting}
           type="submit"
         >
-          Submit
+          Register
         </Button>
         <Link
           as={RouterLink}
-          to="/user/register"
+          to="/user/login"
           className="text-center font-semibold text-base"
         >
-          Register
+          Login
         </Link>
       </div>
     </form>

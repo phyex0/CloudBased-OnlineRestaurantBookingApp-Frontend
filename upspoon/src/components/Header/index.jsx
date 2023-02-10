@@ -1,4 +1,4 @@
-import ThemeSwitcher from "../ThemeSwitcher";
+import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
 import { ReactComponent as ArrowRight } from "../../icons/ArrowRight.svg";
 
 const Header = () => {

@@ -1,85 +1,92 @@
 .container {
-  @apply
-  flex flex-col 
+  @apply flex flex-col 
   justify-center items-center
   text-center 
   h-full
-  relative
+  relative;
 }
 
 .mainBox {
-  @apply
-  flex justify-center items-center
+  @apply flex flex-col justify-center items-center
+  lg:flex-row;
 }
 
 .mainTextBox {
-  @apply
-  px-20
+  @apply px-4 xl:px-20
   flex flex-col justify-center items-center
+  order-2 lg:order-1
+  mt-10 lg:mt-0;
 }
 
 .heading {
-  @apply
-  text-5xl
+  @apply text-lg md:text-xl lg:text-3xl xl:text-5xl
   font-semibold
-  leading-tight 
+  leading-tight
+  text-gray-800 dark:text-white;
 }
 
 .subHeading {
-  @apply
-  text-base
-  mt-4 mb-6 leading-6 text-gray-600
+  @apply text-base
+  mt-4 mb-6 leading-6 text-gray-600;
 }
 
 .orderButton {
-  @apply
-  bg-black 
-  text-white 
+  @apply 
+  bg-gray-800 dark:bg-gray-200
+  text-white dark:text-black
   font-bold 
   py-3
   px-6 
-  rounded-md
+  rounded-md;
+}
+
+.homeImageContainer {
+  @apply shadow-md dark:shadow-white
+  rounded-lg;
 }
 
 .homeImage {
-  @apply
-  w-3/5
-  h-full
-  rounded-xl
- 
+  @apply w-full
+  lg:w-3/5
+  h-32 sm:h-44 md:h-96 lg:h-full
+  object-cover
+  rounded-lg
+  shadow-md
+  order-1 lg:order-2;
 }
 
 .partnerBox {
-  @apply
-  flex flex-col
-  px-96
-  mt-20 mb-10
+  @apply flex flex-col
+  px-8 md:px-20 xl:px-96
+  mt-20 mb-10;
 }
 
 .partnerHeading {
-  @apply
-  text-3xl
+  @apply text-3xl
   font-semibold
-  leading-tight 
+  leading-tight
+  text-gray-800 dark:text-white;
 }
 
 .partnerTextBox {
-  @apply
-  mt-3
+  @apply mt-3
   px-8 py-6
   flex flex-col gap-4
-  shadow-2xl border text-left
+  shadow-md dark:shadow-white text-left
   rounded-lg
+  text-slate-900 dark:text-white
+  
+  
 }
 
 .partnerTextHeading {
-  @apply
-  text-xl font-medium
+  @apply text-xl font-medium;
 }
 
 .bePartnerButton {
-  @apply
-  bg-gray-800 text-white
+  @apply bg-gray-800 dark:bg-gray-200
   mx-auto px-6 py-2
   rounded-lg border hover:bg-black
+text-white dark:text-black
+font-semibold;
 }

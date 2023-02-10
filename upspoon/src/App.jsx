@@ -66,9 +66,7 @@ const router = createBrowserRouter(
 const App = () => {
   return (
     <AuthProvider>
-      <div className="bg-white dark:bg-black min-h-full border">
-        <RouterProvider router={router} />
-      </div>
+      <RouterProvider router={router} />
     </AuthProvider>
   );
 };

@@ -7,15 +7,15 @@
 }
 
 .mainBox {
-  @apply flex flex-col justify-center items-center
-  lg:flex-row;
+  @apply flex flex-col 
+  xl:flex-row;
 }
 
 .mainTextBox {
   @apply px-4 xl:px-20
   flex flex-col justify-center items-center
-  order-2 lg:order-1
-  mt-10 lg:mt-0;
+  order-2 xl:order-1
+  mt-10 xl:mt-0;
 }
 
 .heading {
@@ -27,7 +27,7 @@
 
 .subHeading {
   @apply text-base
-  mt-4 mb-6 leading-6 text-gray-600;
+  mt-4 mb-6 leading-6 text-gray-600 dark:text-gray-300;
 }
 
 .orderButton {
@@ -42,17 +42,17 @@
 
 .homeImageContainer {
   @apply shadow-md dark:shadow-white
-  rounded-lg;
+  rounded-lg
+  order-1 xl:order-2
+  /* w-full lg:w-3/5 */
+   h-32 md:h-44 lg:h-96 xl:h-full
 }
 
 .homeImage {
-  @apply w-full
-  lg:w-3/5
-  h-32 sm:h-44 md:h-96 lg:h-full
+  @apply w-full h-full
   object-cover
   rounded-lg
   shadow-md
-  order-1 lg:order-2;
 }
 
 .partnerBox {

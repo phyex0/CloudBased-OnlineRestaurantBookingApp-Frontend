@@ -1,20 +1,26 @@
 import styles from "./style.module.css";
 import { FiGlobe } from 'react-icons/fi';
+import { BiFoodMenu } from 'react-icons/bi';
 import { HiUser, HiUserAdd } from 'react-icons/hi';
-import { IoLocationSharp } from 'react-icons/io5';
-import { IoIosArrowForward } from 'react-icons/io'
+import { MdFastfood } from 'react-icons/md';
 
 function OrderHeader() {
     return (
         <>
             <div className={styles.container}>
                 <div className={styles.innerContainer}>
-                    <a href="#" className={styles.logoMarkCotainer}>
+                    <nav className={styles.headerGroup}>
                         <a href="#"
-                            className={styles.logoMark}>
-                            Upspoon LOGOMARK
+                            className={styles.headerText}>
+                            <MdFastfood size={18} />
+                            Food
                         </a>
-                    </a>
+                        <a href="#"
+                            className={styles.headerText}>
+                            <BiFoodMenu size={18} />
+                            Booking
+                        </a>
+                    </nav>
                     <nav className={styles.headerGroup}>
                         <a href="#"
                             className={styles.headerText}>

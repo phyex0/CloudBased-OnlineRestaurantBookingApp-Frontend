@@ -39,8 +39,8 @@ function Campaigns() {
         slidesToScroll: 1,
         autoplay: true,
         autoplaySpeed: 3000,
-        nextArrow: <NextButton />,
-        prevArrow: <PrevButton />,
+        /*  nextArrow: <NextButton />,
+         prevArrow: <PrevButton />, */
         responsive: [
             {
                 breakpoint: 1024,

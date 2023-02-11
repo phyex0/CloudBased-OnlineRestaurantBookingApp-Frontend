@@ -1,0 +1,14 @@
+[
+    {
+        "title": "Su & İçecek",
+        "subTitles": ["Su", "Gazlı İçecek", "Maden Suyu"]
+    },
+    {
+        "title": "Meyve & Sebze",
+        "subTitles": ["Meyve", "Sebze"]
+    },
+    {
+        "title": "Fırından",
+        "subTitles": ["Taze Fırın", "Unlu Mamüller"]
+    }
+]

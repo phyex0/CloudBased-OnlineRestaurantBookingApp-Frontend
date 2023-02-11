@@ -8,7 +8,7 @@
 
 .campaginsText{
     @apply
-    font-semibold 
+    font-bold 
     hidden 
     sm:block 
     text-sm 

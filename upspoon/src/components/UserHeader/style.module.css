@@ -34,6 +34,15 @@
     gap-x-8
     hidden
     sm:flex
+    bg-green-800 
+}
+
+.currentHeader{
+    @apply
+    gap-x-8
+    hidden
+    sm:flex
+    bg-red-800 
 }
 
 .logoMark{

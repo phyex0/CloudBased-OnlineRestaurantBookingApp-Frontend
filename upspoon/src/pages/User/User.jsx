@@ -1,5 +1,4 @@
 import React from 'react'
-import OrderHeader from '../../components/OrderHeader'
 import HeroSection from '../../components/HeroSection'
 import Categories from '../../components/Categories'
 import Campaigns from '../../components/Campaigns'
@@ -10,7 +9,6 @@ const User = () => {
   const width = useWindowWidth()
   return (
     <div>
-      <OrderHeader />
       {width < 640 && <Campaigns />}
       <HeroSection />
       <Categories />

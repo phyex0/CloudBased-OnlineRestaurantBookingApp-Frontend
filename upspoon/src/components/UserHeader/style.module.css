@@ -61,3 +61,11 @@
     text-white 
     font-semibold
 }
+
+.subtitleHeader{
+    @apply
+    bg-green-800 
+    flex 
+    h-8
+    items-center 
+}

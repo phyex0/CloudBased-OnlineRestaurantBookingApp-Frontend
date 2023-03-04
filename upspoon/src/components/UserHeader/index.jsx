@@ -1,13 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./style.module.css";
 import { FiGlobe } from 'react-icons/fi';
 import { BiFoodMenu } from 'react-icons/bi';
 import { HiUser, HiUserAdd } from 'react-icons/hi';
 import { MdFastfood } from 'react-icons/md';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 function UserHeader() {
     const [currentTitle, setCurrentTitle] = useState('Food')
+    const location = useLocation()
+    const [crumbAmount, setCrumbAmout] = useState(0)
+
+    const crumbs = () => {
+        setCrumbAmout(location.pathname.split('/').length)
+    }
+
+    useEffect(() => {
+        crumbs()
+    }, [currentTitle]);
 
     return (
         <>
@@ -52,6 +62,13 @@ function UserHeader() {
                     </nav>
                 </div>
             </div>
+            {crumbAmount >= 3 &&
+                <div className={styles.subtitleHeader}>
+                    <a href="#">
+                        {currentTitle}
+                    </a>
+                </div>
+            }
         </>
     )
 }

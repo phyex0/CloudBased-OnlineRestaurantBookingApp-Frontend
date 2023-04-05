@@ -9,10 +9,45 @@ import { GoogleLogin } from "@react-oauth/google";
 import jwtDecode from "jwt-decode";
 import ClientOAuth2 from "client-oauth2";
 import Facebook from "react-oauth2";
+import { RequestAuthorizationCode } from "react-oauth2-auth-code-flow";
+import { AuthCodeProvider } from "react-oauth2-authcode-provider";
+import "react-oauth2-authcode-provider/dist/index.css";
+import { useAuth } from "react-oauth2-pkce";
+
+const oauthClient = new ClientOAuth2({
+  clientId: "",
+  clientSecret: "s",
+  accessTokenUri: `/oauth/token/`,
+  authorizationUri: "https://www.dropbox.com/oauth2/authorize",
+  redirectUri: "https://www.yourapp.com/auth/dropbox",
+  scopes: ["read"],
+});
 
 const Home = () => {
   const [credentialResponse, setCredentialResponse] = useState(null);
   const [user, setUser] = useState(null);
+
+  const { authService, authTokens } = useAuth();
+
+  const login = async () => {
+    authService.authorize();
+  };
+  const logout = async () => {
+    authService.logout();
+  };
+
+  if (authService.isPending()) {
+    return <div>Loading...</div>;
+  }
+
+  if (!authService.isAuthenticated()) {
+    return (
+      <div>
+        <p>Not Logged in yet: {authTokens?.idToken} </p>
+        <button onClick={login}>Login</button>
+      </div>
+    );
+  }
 
   useEffect(() => {
     if (!credentialResponse?.credential) return;
@@ -108,6 +143,10 @@ const Home = () => {
                 >
                   Login With Facebook From component
                 </Facebook>
+              </div>
+              <div>
+                <p>Logged in! {authTokens.idToken}</p>
+                <button onClick={logout}>Logout</button>
               </div>
             </div>
 

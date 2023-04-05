@@ -7,6 +7,8 @@ import Footer from "../components/Footer";
 import OAuth2Login from "react-simple-oauth2-login";
 import { GoogleLogin } from "@react-oauth/google";
 import jwtDecode from "jwt-decode";
+import ClientOAuth2 from "client-oauth2";
+import Facebook from "react-oauth2";
 
 const Home = () => {
   const [credentialResponse, setCredentialResponse] = useState(null);
@@ -19,6 +21,14 @@ const Home = () => {
 
   const onSuccess = (response) => console.log(response);
   const onFailure = (response) => console.error(response);
+
+  const facebook = (err, res) => {
+    if (!err) {
+      console.log("res: ", res);
+    } else {
+      console.log("err: ");
+    }
+  };
 
   return (
     <>
@@ -72,7 +82,6 @@ const Home = () => {
 
               <div>
                 <h1>Current User Custom</h1>
-
                 <OAuth2Login
                   authorizationUrl="https://accounts.spotify.com/authorize"
                   responseType="token"
@@ -82,9 +91,30 @@ const Home = () => {
                   onFailure={onFailure}
                 />
               </div>
+
+              <div>
+                <h4>Custom USER 2</h4>
+
+                <Facebook
+                  url={"http://localhost:5173/"}
+                  clientId={""}
+                  clientSecret={""}
+                  redirectUri={"http://localhost:5173/"}
+                  scope={"email,user_location"}
+                  width={300}
+                  height={300}
+                  callback={facebook}
+                  style={{ color: "green" }}
+                >
+                  Login With Facebook From component
+                </Facebook>
+              </div>
             </div>
 
-            <UpButton href="/user" className={styles.orderButton}>
+            <UpButton
+              href="/user"
+              className={[styles.orderButton, "mt-10"].join(" ")}
+            >
               Start Ordering!
             </UpButton>
           </div>

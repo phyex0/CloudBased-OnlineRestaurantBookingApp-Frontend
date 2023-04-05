@@ -1,14 +1,24 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
 import IconCover from "../components/IconCover";
 import UpButton from "../components/UpButton";
 import homeBg from "../assets/images/home-bg.png";
 import Footer from "../components/Footer";
+import OAuth2Login from "react-simple-oauth2-login";
+import { GoogleLogin } from "@react-oauth/google";
+import jwtDecode from "jwt-decode";
 
 const Home = () => {
+  const [credentialResponse, setCredentialResponse] = useState(null);
+  const [user, setUser] = useState(null);
+
   useEffect(() => {
-    // getRestaurantUser();
-  }, []);
+    if (!credentialResponse?.credential) return;
+    setUser(jwtDecode(credentialResponse.credential));
+  }, [credentialResponse]);
+
+  const onSuccess = (response) => console.log(response);
+  const onFailure = (response) => console.error(response);
 
   return (
     <>
@@ -30,6 +40,49 @@ const Home = () => {
               Upspoon is always with you to order food easily. A fast,
               effective, inexpensive solution!
             </h4>
+
+            <div>
+              <h4>GOOGLE</h4>
+              <GoogleLogin
+                onSuccess={(credentialResponse) => {
+                  console.log(
+                    "Login Success Current User: ",
+                    credentialResponse
+                  );
+                  setCredentialResponse(credentialResponse);
+                }}
+                onError={(res) => {
+                  console.log("Login Failed: ", res);
+                }}
+                useOneTap
+              />
+
+              <div className="flex flex-col items-center">
+                <h1>Current User Google</h1>
+                <img
+                  src={user?.picture}
+                  alt=""
+                  width={80}
+                  height={80}
+                  className="rounded-full mt-6 mb-4"
+                />
+                <h2>{user?.name}</h2>
+                <pre>{JSON.stringify(user, null, 2)}</pre>
+              </div>
+
+              <div>
+                <h1>Current User Custom</h1>
+
+                <OAuth2Login
+                  authorizationUrl="https://accounts.spotify.com/authorize"
+                  responseType="token"
+                  clientId="9822046hvr4lnhi7g07grihpefahy5jb"
+                  redirectUri="http://localhost:3000/oauth-callback"
+                  onSuccess={onSuccess}
+                  onFailure={onFailure}
+                />
+              </div>
+            </div>
 
             <UpButton href="/user" className={styles.orderButton}>
               Start Ordering!

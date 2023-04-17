@@ -1,7 +1,0 @@
-.container {
-    @apply
-    inline-flex
-    justify-center items-center
-    rounded-full
-    w-16 h-16
-}

@@ -1,0 +1,190 @@
+.container {
+    @apply
+    h-auto 
+    sm:h-[500px] 
+    bg-green-500 
+    relative 
+    before:bg-gradient-to-r 
+    before:from-green-600 
+    before:to-transparent 
+    before:absolute 
+    before:inset-0 
+    before:w-full 
+    before:h-full 
+    before:z-10
+}
+
+.footerTitle {
+    @apply
+    text-2xl
+    font-bold
+    text-gray-600 
+    tracking-widest
+    italic
+}
+
+.slider{
+    @apply
+    h-full 
+    hidden 
+    sm:block
+}
+
+.bgImage{
+    @apply
+    h-[500px] 
+    bg-center 
+    bg-no-repeat 
+    bg-cover
+}
+
+.body{
+    @apply
+    relative 
+    sm:absolute 
+    inset-0 
+    px-0 
+    sm:px-8 
+    z-[40] 
+    flex 
+    items-center
+}
+
+.bodyInner{
+    @apply
+    w-full 
+    sm:container 
+    flex mx-auto 
+    justify-between 
+    items-center
+}
+
+.titleContainer{
+    @apply
+    gap-y-10 
+    flex-col 
+    hidden 
+    sm:flex
+}
+
+.subTitle{
+    @apply
+    text-4xl 
+    font-semibold 
+    tracking-tighter 
+    text-white
+}
+
+.authContainer{
+    @apply
+    w-full 
+    sm:w-[400px] 
+    bg-gray-50 
+    sm:rounded-lg 
+    px-5 
+    py-3 
+    pb-5 
+    sm:py-6
+}
+
+.authText{
+    @apply
+    text-center 
+    mb-4 
+    font-semibold 
+    text-green-600
+}
+
+.authDiv{
+    @apply
+    flex 
+    flex-col 
+    gap-y-3
+}
+
+.phoneFlag{
+    @apply
+    flex 
+    gap-x-3
+}
+
+.phoneInput{
+    @apply
+    relative 
+    flex-1 
+}
+
+.phoneCover{
+    @apply
+    h-full 
+    rounded 
+    px-4 
+    pt-2 
+    hover:border-green-700 
+    focus:border-green-700 
+    transition-colors 
+    outline-none 
+    text-sm w-full 
+    border-2 
+    border-gray-200
+}
+
+.phoneNumber{
+    @apply
+    absolute 
+    top-0 
+    left-0 
+    h-full 
+    flex 
+    items-center 
+    px-4 
+    text-sm 
+    text-gray-500 
+    transition-all 
+    group-focus-within:h-7 
+    group-focus-within:text-xs 
+    group-focus-within:text-green-600 
+    peer-valid:h-7 
+    peer-valid:text-xs 
+    peer-valid:text-green-600
+}
+
+.continueWithPhone{
+    @apply
+    h-12 
+    rounded-lg 
+    transition-colors 
+    bg-yellow-300 
+    text-green-700 
+    text-sm 
+    font-semibold 
+    hover:bg-green-700 
+    hover:text-yellow-300
+}
+
+.facebookButton{
+    @apply
+    h-12 
+    flex 
+    items-center 
+    rounded-lg 
+    px-4 
+    transition-colors 
+    bg-blue-700 
+    bg-opacity-10 
+    text-blue-900 
+    text-sm 
+    font-semibold 
+    hover:bg-blue-900 
+    hover:text-white
+}
+
+.faFacebook{
+    @apply
+    justify-self-start
+}
+
+.facebookText{
+    @apply
+    mx-auto
+}

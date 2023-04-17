@@ -1,6 +1,0 @@
-.notFoundContainer {
-    @apply
-    flex flex-col items-center justify-center
-    text-center text-xl 
-    max-w-xs mx-auto
-}

@@ -1,9 +1,0 @@
-version: '3'
-
-services:
-  app:
-    image: upspoon
-    build: 
-      dockerfile: Dockerfile.production
-    ports:
-      - 3000:3000

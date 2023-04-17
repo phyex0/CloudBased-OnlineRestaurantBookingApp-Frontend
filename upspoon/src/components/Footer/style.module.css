@@ -1,0 +1,18 @@
+.container {
+    @apply
+    flex
+    justify-between
+    items-center
+    px-8 md:px-16
+    bg-gray-50
+    /* py-4 */
+}
+
+.footerTitle {
+    @apply
+    text-2xl
+    font-bold
+    text-gray-600 
+    tracking-widest
+    italic
+}

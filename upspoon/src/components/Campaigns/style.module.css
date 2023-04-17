@@ -1,0 +1,33 @@
+.container{
+    @apply
+    overflow-hidden 
+    md:overflow-visible 
+    mx-auto 
+    px-0
+}
+
+.campaginsText{
+    @apply
+    font-bold 
+    hidden 
+    sm:block 
+    text-sm 
+    mb-3 
+}
+
+.slider{
+    @apply
+    -mx-2 
+    relative
+}
+
+.banner{
+    @apply
+    px-2
+}
+
+.bannerImage{
+    @apply
+    w-full 
+    sm:rounded-lg
+}

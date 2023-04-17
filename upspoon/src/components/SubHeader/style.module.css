@@ -1,0 +1,5 @@
+.container {
+    @apply
+    bg-green-800 
+    px-8
+}

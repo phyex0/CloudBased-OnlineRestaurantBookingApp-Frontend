@@ -183,6 +183,10 @@ export const getOrganizationsByBusinessType = async (
     size: 1,
   }
 ) => {
+  console.log("env: ", import.meta.env.VITE_API_DEV);
+  console.log("apiUrl: ", apiUrl);
+  console.log("orderUrl: ", orderUrl);
+
   return await resolve(
     axios
       .get(`${orderUrl}/business/${businessTypes}`, {

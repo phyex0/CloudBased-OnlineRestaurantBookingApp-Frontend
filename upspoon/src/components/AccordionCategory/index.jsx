@@ -1,9 +1,5 @@
-import {
-  Accordion,
-  AccordionBody,
-  AccordionHeader,
-  AccordionItem,
-} from "react-headless-accordion";
+import { Accordion, AccordionBody, AccordionHeader, AccordionItem } from "react-headless-accordion";
+import { useState } from "react";
 
 const AccordionCategory = () => {
   const [categoryDetail, setCategoryDetail] = useState([
@@ -22,15 +18,17 @@ const AccordionCategory = () => {
   ]);
 
   return (
-    <Accordion>
+    <Accordion allowToggle w="full">
       {categoryDetail.map((item) => (
-        <AccordionItem>
-          <AccordionHeader>
-            <h3 className={`accordion-title text-red-800`}>{item.title}</h3>
+        <AccordionItem key={item.title}>
+          <AccordionHeader px={4} py={2} _hover={{ bg: "gray.100" }}>
+            <h3 className="accordion-title text-red-800">{item.title}</h3>
           </AccordionHeader>
-          <AccordionBody>
-            {item.subTitles.map((categoryDetailItem) => (
-              <div className="accordion-body">{categoryDetailItem}</div>
+          <AccordionBody px={4} py={2}>
+            {item.subTitles.map((categoryDetailItem, index) => (
+              <div key={index} className="accordion-body">
+                {categoryDetailItem}
+              </div>
             ))}
           </AccordionBody>
         </AccordionItem>

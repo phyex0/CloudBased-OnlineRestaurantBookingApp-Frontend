@@ -1,6 +1,6 @@
 import CardItem from "../CardItem";
 import styles from "./style.module.css";
-
+import React, { useState } from "react";
 function Cards() {
   const [cards, setCards] = useState([
     {

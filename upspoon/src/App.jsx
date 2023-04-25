@@ -17,11 +17,13 @@ import UserLayout from "./layouts/UserLayout";
 import User from "./pages/User/User";
 import UserBooking from "./pages/User/Food/Booking";
 import UserFood from "./pages/User/Food/Food";
+import FoodDetail from "./pages/User/Food/FoodDetail";
 import UserLogin from "./pages/User/Login";
 import UserRegister from "./pages/User/Register";
 import RestaurantRegister from "./pages/Restaurant/Register";
 import RestaurantLogin from "./pages/Restaurant/Login";
 import AuthLayout from "./layouts/AuthLayout";
+import UserFoodLayout from "./layouts/UserFoodLayout";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -38,7 +40,12 @@ const router = createBrowserRouter(
       <Route element={<PrivateUserRoutes />}>
         <Route path="/user" element={<UserLayout />}>
           <Route index element={<User />} />
-          <Route path="/user/food" element={<UserFood />} />
+          <Route
+            path='/user/food'
+            element={<UserFoodLayout />}>
+            <Route index element={<UserFood />} />
+            <Route path=':name' element={<FoodDetail />} />
+          </Route>
           <Route path="/user/booking" element={<UserBooking />} />
         </Route>
       </Route>

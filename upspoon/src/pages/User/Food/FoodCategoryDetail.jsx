@@ -88,7 +88,7 @@ const FoodCategoryDetail = () => {
             </div>
             <div class="flex flex-col md:flex-row md:justify-between md:items-start mx-8">
                 <AccordionCategory />
-                <div className="grid grid-cols-4 gap-4 w-full px-4">
+                <div className="grid grid-cols-4 gap-2 w-full px-8">
                     {products.map((product) => (
                         <a href={`/user/food/${name}/${product.name}/detail`}>
                             <div key={product.id} className="border rounded-md shadow-md relative">
@@ -121,7 +121,6 @@ const FoodCategoryDetail = () => {
                     <button className="bg-green-500 text-white rounded-md px-4 py-2 mt-4">Satın Al</button>
                 </div>
             </div>
-            );
         </div>
     );
 

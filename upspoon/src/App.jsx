@@ -17,6 +17,7 @@ import UserLayout from "./layouts/UserLayout";
 import User from "./pages/User/User";
 import UserBooking from "./pages/User/Food/Booking";
 import UserFood from "./pages/User/Food/Food";
+import FoodCategoryDetail from "./pages/User/Food/FoodCategoryDetail";
 import FoodDetail from "./pages/User/Food/FoodDetail";
 import UserLogin from "./pages/User/Login";
 import UserRegister from "./pages/User/Register";
@@ -43,8 +44,8 @@ const router = createBrowserRouter(
           <Route
             path='/user/food'
             element={<UserFoodLayout />}>
-            <Route index element={<UserFood />} />
-            <Route path=':name' element={<FoodDetail />} />
+            <Route index path=':name' element={<FoodCategoryDetail />} />
+            <Route path=':name/:food_name/detail' element={<FoodDetail />} />
           </Route>
           <Route path="/user/booking" element={<UserBooking />} />
         </Route>

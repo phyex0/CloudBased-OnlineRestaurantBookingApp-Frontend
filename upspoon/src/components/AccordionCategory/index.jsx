@@ -16,13 +16,18 @@ const AccordionCategory = () => {
       subTitles: ["Taze Fırın", "Unlu Mamüller"],
     },
   ]);
+  const [activeIndex, setActiveIndex] = useState(null);
+
+  const handleToggle = (index) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
 
   return (
     <Accordion allowToggle w="full">
-      {categoryDetail.map((item) => (
+      {categoryDetail.map((item, index) => (
         <AccordionItem key={item.title}>
-          <AccordionHeader px={4} py={2} _hover={{ bg: "gray.100" }}>
-            <h3 className="accordion-title text-red-800">{item.title}</h3>
+          <AccordionHeader className={`px-4 py-2 text-left ${activeIndex === index ? 'bg-green-500' : 'hover:bg-green-100'}`} onClick={() => handleToggle(index)}>
+            <h3 className="accordion-title text-green-800 ti-align-left">{item.title}</h3>
           </AccordionHeader>
           <AccordionBody px={4} py={2}>
             {item.subTitles.map((categoryDetailItem, index) => (

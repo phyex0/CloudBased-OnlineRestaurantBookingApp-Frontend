@@ -87,10 +87,10 @@ const FoodCategoryDetail = () => {
                 {width > 640 && <Campaigns />}
             </div>
             <div class="flex flex-col md:flex-row md:justify-between md:items-start mx-8">
-                <AccordionCategory />
+                {width > 640 && <AccordionCategory />}
                 <div className="grid grid-cols-4 gap-2 w-full px-8">
                     {products.map((product) => (
-                        <a href={`/user/food/${name}/${product.name}/detail`}>
+                        <a href={`/user/food/detail/${name}/${product.name}`}>
                             <div key={product.id} className="border rounded-md shadow-md relative">
                                 <button className="absolute top-0 right-0 m-2 py-1 px-1 bg-white text-green-500 font-bold rounded-md hover:bg-green-500 hover:text-white focus:outline-none border-2 border-green-500">
                                     <FaPlus />
@@ -107,17 +107,24 @@ const FoodCategoryDetail = () => {
                 </div>
 
                 <div className="bg-white border rounded-md shadow-md p-4 mt-4 md:mt-0">
-                    <ul>
-                        {items.map((item) => (
-                            <li key={item.id} className="flex justify-between mb-2">
-                                <p className="mr-2">{item.name}</p>
-                                <p>{item.price} TL</p>
-                            </li>
-                        ))}
-                    </ul>
-                    <p className="text-lg font-medium mt-4">
-                        Toplam: {items.reduce((total, item) => total + item.price, 0)} TL
-                    </p>
+                    {
+                        items?.length == 0 ?
+                            <div>Sepetin boş</div>
+                            :
+                            <div>
+                                <ul>
+                                    {items.map((item) => (
+                                        <li key={item.id} className="flex justify-between mb-2">
+                                            <p className="mr-2">{item.name}</p>
+                                            <p>{item.price} TL</p>
+                                        </li>
+                                    ))}
+                                </ul>
+                                <p className="text-lg font-medium mt-4">
+                                    Toplam: {items.reduce((total, item) => total + item.price, 0)} TL
+                                </p>
+                            </div>
+                    }
                     <button className="bg-green-500 text-white rounded-md px-4 py-2 mt-4">Satın Al</button>
                 </div>
             </div>

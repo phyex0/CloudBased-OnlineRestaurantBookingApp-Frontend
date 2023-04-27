@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import { IoIosArrowBack, IoIosArrowForward, } from "react-icons/io";
+import { FaGift } from "react-icons/fa";
 import { useWindowWidth } from "@react-hook/window-size";
 import styles from "./style.module.css";
 
@@ -82,7 +83,10 @@ function Campaigns() {
         className={[styles.container, "sm:container"].join(" ")}
         style={{ width: width < 640 ? width : "" }}
       >
-        <h3 className={styles.campaignsText}>Kampanyalar</h3>
+        <div className="flex flex-row items-center mb-1">
+          <FaGift className={styles.campaignIcon} />
+          <h3 className={styles.campaignsText}>Kampanyalar</h3>
+        </div>
         <Slider className={styles.slider} {...settings}>
           {banners &&
             banners.map((banner) => (

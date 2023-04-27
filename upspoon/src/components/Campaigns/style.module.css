@@ -6,13 +6,13 @@
     px-0
 }
 
-.campaginsText{
+.campaignsText{
     @apply
-    font-bold 
-    hidden 
-    sm:block 
-    text-sm 
-    mb-3 
+    text-xl
+    font-bold
+    text-gray-800
+    flex
+    items-center
 }
 
 .slider{
@@ -30,4 +30,19 @@
     @apply
     w-full 
     sm:rounded-lg
+}
+
+.campaignIcon{
+    @apply
+    h-4
+    w-4 
+    mr-2
+}
+
+.campaignsIconRow{
+    @apply
+    flex 
+    flex-row 
+    items-center 
+    mb-1
 }

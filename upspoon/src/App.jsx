@@ -45,7 +45,7 @@ const router = createBrowserRouter(
             path='/user/food'
             element={<UserFoodLayout />}>
             <Route index path=':name' element={<FoodCategoryDetail />} />
-            <Route path=':name/:food_name/detail' element={<FoodDetail />} />
+            <Route path='detail/:name/:food_name' element={<FoodDetail />} />
           </Route>
           <Route path="/user/booking" element={<UserBooking />} />
         </Route>

@@ -16,16 +16,6 @@ const Header = () => {
       >
         UPSPOON
       </Link>
-
-      <Link
-        as={RouterLink}
-        to="/restaurant"
-        className="text-center font-semibold text-base
-        no-underline
-        "
-      >
-        Restaurant
-      </Link>
     </header>
   );
 };

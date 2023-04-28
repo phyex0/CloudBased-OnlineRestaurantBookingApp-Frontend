@@ -69,24 +69,6 @@ const Home = () => {
               effective, inexpensive solution!
             </h4>
 
-            <div>
-              <h4>GOOGLE</h4>
-              <div className="flex flex-col items-center">
-                <h1>Current User Google</h1>
-                <img
-                  src={user?.picture}
-                  alt=""
-                  width={80}
-                  height={80}
-                  className="rounded-full mt-6 mb-4"
-                />
-                <h2>{user?.name}</h2>
-                <pre>{JSON.stringify(user, null, 2)}</pre>
-              </div>
-
-              <Oauth2Login />
-            </div>
-
             <UpButton
               href="/user"
               className={[styles.orderButton, "mt-10"].join(" ")}

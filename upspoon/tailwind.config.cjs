@@ -10,7 +10,9 @@ module.exports = {
         layoutFirst: `minmax(calc(100vh - 60px), 1fr) 60px`, // main, footer
         layoutSecond: `80px minmax(calc(100vh - 140px), 1fr) 60px`, // header, main, footer
       },
-      backgroundImage: {},
+      backgroundImage: {
+        homeBg: "url('../src/assets/images/home-bg.png')",
+      },
       colors: {},
       backgroundPosition: {},
     },

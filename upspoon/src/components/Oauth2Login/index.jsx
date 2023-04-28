@@ -2,7 +2,7 @@ import LoginOAuth2 from "@okteto/react-oauth2-login";
 import axios from "axios";
 import * as querystring from "querystring";
 
-const Oauth2Login = () => {
+const Oauth2Login = ({ className, ...props }) => {
   const onSuccess = (response) => getAccessToken(response.code);
   const onFailure = (response) => console.error(response);
 
@@ -33,25 +33,6 @@ const Oauth2Login = () => {
       .catch((error) => console.log(error));
   };
 
-  const apiCon = async (tok) => {
-    try {
-      const response = await fetch(
-        "http://192.168.1.102:8080/order-service/api/business?businessTypes=MARKET&page=0&size=1",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${tok}`,
-          },
-        }
-      );
-
-      console.log("response: ", response.json());
-    } catch (error) {
-      console.log("APİCON: ", error);
-    }
-  };
-
   return (
     <LoginOAuth2
       clientId="messaging-client"
@@ -61,6 +42,8 @@ const Oauth2Login = () => {
       responseType="code"
       onSuccess={onSuccess}
       onFailure={onFailure}
+      buttonText="Giriş Yap"
+      className={className}
     />
   );
 };

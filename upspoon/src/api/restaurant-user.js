@@ -34,7 +34,17 @@ export const updateUser = async (
   }
 ) => {
   return await resolve(
-    axios.put(`${restaurantUserUrl}/${userId}`, userObj).then((res) => res.data)
+    axios
+      .put(`${restaurantUserUrl}`, userObj, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        params: {
+          userId,
+        },
+      })
+      .then((res) => res.data)
   );
 };
 
@@ -51,13 +61,31 @@ export const createUser = async (
 ) => {
   return await resolve(
     axios
-      .post(`${restaurantUserUrl}/${restaurantId}`, userObj)
+      .post(`${restaurantUserUrl}`, userObj, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        params: {
+          restaurantId,
+        },
+      })
       .then((res) => res.data)
   );
 };
 
 export const deleteUser = async (userId) => {
   return await resolve(
-    axios.delete(`${restaurantUserUrl}/${userId}`).then((res) => res.data)
+    axios
+      .delete(`${restaurantUserUrl}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        params: {
+          userId,
+        },
+      })
+      .then((res) => res.data)
   );
 };

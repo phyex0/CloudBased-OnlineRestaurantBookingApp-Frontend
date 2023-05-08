@@ -6,12 +6,34 @@ const stockUrl = `${apiUrl}/stock/api`;
 
 export const updateStock = async (productId, count) => {
   return await resolve(
-    axios.put(stockUrl, { productId, count }).then((res) => res.data)
+    axios
+      .put(stockUrl, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        params: {
+          productId,
+          count,
+        },
+      })
+      .then((res) => res.data)
   );
 };
 
 export const createStock = async (productId, count) => {
   return await resolve(
-    axios.post(stockUrl, { productId, count }).then((res) => res.data)
+    axios
+      .post(stockUrl, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        params: {
+          productId,
+          count,
+        },
+      })
+      .then((res) => res.data)
   );
 };

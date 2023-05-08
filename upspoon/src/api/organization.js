@@ -8,6 +8,10 @@ export const getOrganizationsByUserId = async (restaurantUserId, pageable) => {
   return await resolve(
     axios
       .get(organizationUrl, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
         params: {
           restaurantUserId,
           ...pageable,
@@ -27,7 +31,15 @@ export const updateRestaurant = async (
 ) => {
   return await resolve(
     axios
-      .put(`${organizationUrl}/${restaurantId}`, organizationObj)
+      .put(`${organizationUrl}`, organizationObj, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        params: {
+          restaurantId,
+        },
+      })
       .then((res) => res.data)
   );
 };
@@ -60,7 +72,17 @@ export const createOrganization = async (
 
 export const deleteRestaurant = async (restaurantId) => {
   return await resolve(
-    axios.delete(`${organizationUrl}/${restaurantId}`).then((res) => res.data)
+    axios
+      .delete(`${organizationUrl}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        params: {
+          restaurantId,
+        },
+      })
+      .then((res) => res.data)
   );
 };
 
@@ -68,7 +90,15 @@ export const deleteRestaurant = async (restaurantId) => {
 export const createBusiness = async (organizationId) => {
   return await resolve(
     axios
-      .post(`${organizationUrl}/create-business/${organizationId}`)
+      .post(`${organizationUrl}/create-business`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        params: {
+          organizationId,
+        },
+      })
       .then((res) => res.data)
   );
 };
@@ -76,9 +106,16 @@ export const createBusiness = async (organizationId) => {
 export const linkUserToGivenRestaurant = async (restaurantId, userId) => {
   return await resolve(
     axios
-      .get(
-        `${organizationUrl}/link-user-to-given-restaurant/${restaurantId}/${userId}`
-      )
+      .get(`${organizationUrl}/link-user-to-given-restaurant`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        params: {
+          restaurantId,
+          userId,
+        },
+      })
       .then((res) => res.data)
   );
 };
@@ -86,9 +123,16 @@ export const linkUserToGivenRestaurant = async (restaurantId, userId) => {
 export const unlinkUserFromRestaurant = async (userId, restaurantId) => {
   return await resolve(
     axios
-      .delete(
-        `${organizationUrl}/unlink-user-from-given-restaurant/${userId}/${restaurantId}`
-      )
+      .delete(`${organizationUrl}/unlink-user-from-given-restaurant`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        params: {
+          userId,
+          restaurantId,
+        },
+      })
       .then((res) => res.data)
   );
 };

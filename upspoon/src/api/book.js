@@ -12,7 +12,14 @@ export const updateBusiness = async (
   }
 ) => {
   return await resolve(
-    axios.put(`${bookUrl}`, businessObj).then((res) => res.data)
+    axios
+      .put(`${bookUrl}`, businessObj, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => res.data)
   );
 };
 
@@ -29,7 +36,15 @@ export const createBook = async (
 ) => {
   return await resolve(
     axios
-      .post(`${bookUrl}/create-book-detail/${businessId}`, bookDetailObj)
+      .post(`${bookUrl}/create-book-detail`, bookDetailObj, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        params: {
+          businessId,
+        },
+      })
       .then((res) => res.data)
   );
 };
@@ -44,8 +59,14 @@ export const getBooks = async (
 ) => {
   return await resolve(
     axios
-      .get(`${bookUrl}/get-books-for-business/${businessId}/${date}`, {
+      .get(`${bookUrl}/get-books-for-business`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
         params: {
+          businessId,
+          date,
           ...pageableObj,
         },
       })
@@ -63,8 +84,14 @@ export const getBookDetail = async (
 ) => {
   return await resolve(
     axios
-      .get(`${bookUrl}/get-book-details-for-business/${businessId}/${bookId}`, {
+      .get(`${bookUrl}/get-book-details-for-business`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
         params: {
+          businessId,
+          bookId,
           ...pageableObj,
         },
       })
@@ -75,9 +102,16 @@ export const getBookDetail = async (
 export const enableBooking = async (restaurantId, day) => {
   return await resolve(
     axios
-      .get(
-        `${bookUrl}/enable-booking-for-given-amount-of-day/${restaurantId}/${day}`
-      )
+      .get(`${bookUrl}/enable-booking-for-given-amount-of-day`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        params: {
+          restaurantId,
+          day,
+        },
+      })
       .then((res) => res.data)
   );
 };
@@ -85,7 +119,16 @@ export const enableBooking = async (restaurantId, day) => {
 export const deleteBook = async (businessId, bookId) => {
   return await resolve(
     axios
-      .delete(`${bookUrl}/delete-book/${businessId}/${bookId}`)
+      .delete(`${bookUrl}/delete-book`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        params: {
+          businessId,
+          bookId,
+        },
+      })
       .then((res) => res.data)
   );
 };
@@ -93,7 +136,16 @@ export const deleteBook = async (businessId, bookId) => {
 export const cancelBook = async (businessId, bookDetailId) => {
   return await resolve(
     axios
-      .delete(`${bookUrl}/cancel-book-detail/${businessId}/${bookDetailId}`)
+      .delete(`${bookUrl}/cancel-book-detail`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        params: {
+          businessId,
+          bookDetailId,
+        },
+      })
       .then((res) => res.data)
   );
 };

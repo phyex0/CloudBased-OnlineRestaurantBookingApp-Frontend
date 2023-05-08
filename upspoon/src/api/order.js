@@ -7,7 +7,16 @@ const orderUrl = `${apiUrl}/order-service/api`;
 export const getProduct = async (organizationId, productId) => {
   return await resolve(
     axios
-      .get(`${orderUrl}/product/${organizationId}/${productId}`)
+      .get(`${orderUrl}/product`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        params: {
+          organizationId,
+          productId,
+        },
+      })
       .then((res) => res.data)
   );
 };
@@ -28,10 +37,18 @@ export const updateProduct = async (
 ) => {
   return await resolve(
     axios
-      .put(
-        `${orderUrl}/product/${organizationId}/${menuId}/${productId}/${businessTypes}`,
-        productObj
-      )
+      .put(`${orderUrl}/product`, productObj, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        params: {
+          organizationId,
+          menuId,
+          productId,
+          businessTypes,
+        },
+      })
       .then((res) => res.data)
   );
 };
@@ -49,7 +66,16 @@ export const createProduct = async (
 ) => {
   return await resolve(
     axios
-      .post(`${orderUrl}/product/${organizationId}/${menuId}`, productObj)
+      .post(`${orderUrl}/product`, productObj, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        params: {
+          organizationId,
+          menuId,
+        },
+      })
       .then((res) => res.data)
   );
 };
@@ -57,7 +83,17 @@ export const createProduct = async (
 export const deleteProduct = async (organizationId, productId, menuId) => {
   return await resolve(
     axios
-      .delete(`${orderUrl}/product/${organizationId}/${productId}/${menuId}`)
+      .delete(`${orderUrl}/product`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        params: {
+          organizationId,
+          productId,
+          menuId,
+        },
+      })
       .then((res) => res.data)
   );
 };
@@ -71,8 +107,13 @@ export const getMenu = async (
 ) => {
   return await resolve(
     axios
-      .get(`${orderUrl}/menu/${organizationId}`, {
+      .get(`${orderUrl}/menu`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
         params: {
+          organizationId,
           ...pageableObj,
         },
       })
@@ -80,10 +121,25 @@ export const getMenu = async (
   );
 };
 
-export const updateMenu = async (organizationId, menuId) => {
+export const updateMenu = async (
+  organizationId,
+  menuId,
+  menuObj = {
+    name: "hey",
+  }
+) => {
   return await resolve(
     axios
-      .put(`${orderUrl}/menu/${organizationId}/${menuId}`)
+      .put(`${orderUrl}/menu`, menuObj, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        params: {
+          organizationId,
+          menuId,
+        },
+      })
       .then((res) => res.data)
   );
 };
@@ -106,7 +162,15 @@ export const createMenu = async (
 ) => {
   return await resolve(
     axios
-      .post(`${orderUrl}/menu/${organizationId}`, menuObj)
+      .post(`${orderUrl}/menu`, menuObj, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        params: {
+          organizationId,
+        },
+      })
       .then((res) => res.data)
   );
 };
@@ -114,14 +178,33 @@ export const createMenu = async (
 export const deleteMenu = async (organizationId, menuId) => {
   return await resolve(
     axios
-      .delete(`${orderUrl}/menu/${organizationId}/${menuId}`)
+      .delete(`${orderUrl}/menu`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        params: {
+          organizationId,
+          menuId,
+        },
+      })
       .then((res) => res.data)
   );
 };
 
 export const getOrganization = async (organizationId) => {
   return await resolve(
-    axios.get(`${orderUrl}/${organizationId}`).then((res) => res.data)
+    axios
+      .get(`${orderUrl}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        params: {
+          organizationId,
+        },
+      })
+      .then((res) => res.data)
   );
 };
 
@@ -134,7 +217,14 @@ export const createOrder = async (
   }
 ) => {
   return await resolve(
-    axios.post(`${orderUrl}`, orderObj).then((res) => res.data)
+    axios
+      .post(`${orderUrl}`, orderObj, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      })
+      .then((res) => res.data)
   );
 };
 
@@ -148,8 +238,14 @@ export const getProducts = async (
 ) => {
   return await resolve(
     axios
-      .get(`${orderUrl}/product-list/${organizationId}/${menuId}`, {
+      .get(`${orderUrl}/product-list`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
         params: {
+          organizationId,
+          menuId,
           ...pageableObj,
         },
       })
@@ -166,8 +262,13 @@ export const getOrderHistory = async (
 ) => {
   return await resolve(
     axios
-      .get(`${orderUrl}/get-order-history/${userId}`, {
+      .get(`${orderUrl}/get-order-history`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
         params: {
+          userId,
           ...pageableObj,
         },
       })
@@ -185,12 +286,13 @@ export const getOrganizationsByBusinessType = async (
 ) => {
   return await resolve(
     axios
-      .get(`${orderUrl}/business?businessTypes=${businessTypes}`, {
+      .get(`${orderUrl}/business`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         params: {
+          businessTypes,
           ...pageableObj,
         },
       })

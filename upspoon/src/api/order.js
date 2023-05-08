@@ -185,7 +185,11 @@ export const getOrganizationsByBusinessType = async (
 ) => {
   return await resolve(
     axios
-      .get(`${orderUrl}/business/${businessTypes}`, {
+      .get(`${orderUrl}/business?businessTypes=${businessTypes}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
         params: {
           ...pageableObj,
         },

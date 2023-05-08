@@ -188,3 +188,32 @@
     @apply
     mx-auto
 }
+
+
+.loginButton {
+    @apply
+    rounded-lg 
+    transition-colors 
+    bg-blue-300 
+    text-blue-700 
+    text-sm 
+    font-semibold 
+    hover:bg-blue-700 
+    hover:text-gray-200
+    justify-center items-center
+    text-center py-3
+}
+
+.registerButton {
+    @apply
+    rounded-lg 
+    transition-colors 
+    bg-yellow-300 
+    text-green-700 
+    text-sm 
+    font-semibold 
+    hover:bg-green-700 
+    hover:text-yellow-300
+    justify-center items-center
+    text-center py-3
+}

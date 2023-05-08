@@ -15,7 +15,7 @@ const Home = () => {
   }, []);
 
   const runApi = async () => {
-    let response = await getOrganizationsByBusinessType("MARKET", {
+    let response = await getOrganizationsByBusinessType("RESTAURANT", {
       page: 0,
       size: 1,
     });

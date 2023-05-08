@@ -7,10 +7,9 @@ const Oauth2Login = ({ className, ...props }) => {
   const onFailure = (response) => console.error(response);
 
   const getAccessToken = (responseCode) => {
-    console.log(responseCode);
     axios
       .post(
-        "http://192.168.1.102:9000/oauth2/token",
+        "http://192.168.1.105:9000/oauth2/token",
         querystring.stringify({
           grant_type: "authorization_code",
           code: responseCode,
@@ -25,10 +24,9 @@ const Oauth2Login = ({ className, ...props }) => {
         }
       )
       .then((response) => {
-        console.log(response);
-        localStorage.setItem("token", response.data.access_token);
-        apiCon(response.data.access_token);
-        window.alert("Access Token: ".concat(response.data.access_token));
+        console.log("response: ", response);
+        localStorage.setItem("token", response?.data?.access_token);
+        window.location.reload();
       })
       .catch((error) => console.log(error));
   };
@@ -36,7 +34,7 @@ const Oauth2Login = ({ className, ...props }) => {
   return (
     <LoginOAuth2
       clientId="messaging-client"
-      authorizeUri="http://192.168.1.102:9000/oauth2/authorize"
+      authorizeUri="http://192.168.1.105:9000/oauth2/authorize"
       redirectUri="http://127.0.0.1:5173"
       scope="openid"
       responseType="code"

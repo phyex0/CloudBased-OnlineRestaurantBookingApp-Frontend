@@ -28,34 +28,31 @@ const RestaurantRegister = () => {
   } = useForm();
 
   const [showPassword, setShowPassword] = useState(false);
-  const [province, setProvince] = useState("");
-  const [township, setTownship] = useState("");
-  const [street, setStreet] = useState("");
-
-  useEffect(() => {
-    console.log(province);
-  }, [province]);
+  const [businessType, setBusinessType] = useState(null);
 
   const handleClickPassword = () => setShowPassword(!showPassword);
 
   const onSubmit = async (values) => {
-    let { data, error } = await createOrganization(
-      {
+    console.log("values: ", values);
+    console.log("businessType: ", businessType);
+
+    let { data, error } = await createOrganization({
+      newOrganizationDTO: {
         organizationId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        organizationName: "",
-        packageService: "",
-        fullAddress: "",
-        businessTypes: "",
+        organizationName: values?.organization_name,
+        packageService: values?.package_service,
+        fullAddress: values?.full_address,
+        businessTypes: businessType?.value,
       },
-      {
+      newRestaurantUserDTO: {
         userId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        name: "",
-        lastName: "",
+        name: values?.user_name,
+        lastName: values?.user_last_name,
         middleName: "",
-        phoneNumber: "",
-        email: "",
-      }
-    );
+        phoneNumber: values?.phone,
+        email: values?.email,
+      },
+    });
 
     console.log("data: ", data);
     console.log("error: ", error);
@@ -68,75 +65,87 @@ const RestaurantRegister = () => {
         className="w-full lg:w-1/2 mx-auto py-4 px-8 md:px-16 flex flex-col"
       >
         <h2 className="text-center font-bold mb-8 text-lg">
-          RESTAURANT REGISTER
+          Create Organization
         </h2>
         <FormControl isInvalid={errors.name}>
           <div className="flex flex-col md:flex-row gap-12">
             <div className="w-full">
-              <FormLabel htmlFor="name">Restaurant Name</FormLabel>
+              <FormLabel htmlFor="name">Organization Name</FormLabel>
               <Input
-                id="name"
-                placeholder="Enter Restaurant Name"
+                id="organization_name"
+                placeholder="Enter Organization Name"
                 type="text"
-                {...register("name", {
+                {...register("organization_name", {
                   required: "This is required",
                 })}
               />
 
-              <FormLabel className="mt-4">Restaurant Province</FormLabel>
-              <Select
-                name="provinces"
-                options={groupedProvinces}
-                value={province}
-                onChange={(value) => setProvince(value)}
-                placeholder="Select Province"
-                closeMenuOnSelect={false}
+              <FormLabel className="mt-4">Package Service</FormLabel>
+              <Input
+                id="package_service"
+                placeholder="Enter Package Service"
+                type="text"
+                {...register("package_service", {
+                  required: "This is required",
+                })}
               />
 
-              <FormLabel className="mt-4">Restaurant Township</FormLabel>
-              <Select
-                name="townships"
-                options={groupedTownships}
-                value={township}
-                onChange={(value) => setTownship(value)}
-                placeholder="Select Township"
-                closeMenuOnSelect={false}
+              <FormLabel className="mt-4">Full Address</FormLabel>
+              <Input
+                id="full_address"
+                placeholder="Enter Full Address"
+                type="text"
+                {...register("full_address", {
+                  required: "This is required",
+                })}
               />
 
-              <FormLabel className="mt-4">Restaurant Street</FormLabel>
+              <FormLabel className="mt-4">Business Type</FormLabel>
               <Select
-                name="streets"
-                options={groupedStreets}
-                value={street}
-                onChange={(value) => setStreet(value)}
-                placeholder="Select Township"
-                closeMenuOnSelect={false}
+                name="business_types"
+                options={[
+                  { value: "MARKET", label: "Market" },
+                  { value: "RESTAURANT", label: "Restaurant" },
+                  { value: "BOOK", label: "Book" },
+                  { value: "ALL", label: "All" },
+                  { value: "MARKET_RESTAURANT", label: "MARKET_RESTAURANT" },
+                  { value: "RESTAURANT_BOOK", label: "RESTAURANT_BOOK" },
+                ]}
+                value={businessType}
+                onChange={(value) => setBusinessType(value)}
+                placeholder="Select BusinessType"
+                closeMenuOnSelect={true}
               />
+
+              {/* <Select placeholder="Select Business Type">
+                <option value="market">Market</option>
+                <option value="Restaurant">Restaurant</option>
+                <option value="Book">Book</option>
+                <option value="All">All</option>
+                <option value="MARKET_RESTAURANT">MARKET_RESTAURANT</option>
+                <option value="RESTAURANT_BOOK">RESTAURANT_BOOK</option>
+              </Select> */}
             </div>
 
             <div className="w-full">
-              <FormLabel htmlFor="name">Official Name</FormLabel>
+              <FormLabel htmlFor="name">Restaurant User Name</FormLabel>
               <Input
-                id="name"
+                id="user_name"
                 placeholder="Enter Restaurant Owner Name"
                 type="text"
-                {...register("company-owner-name", {
+                {...register("user_name", {
                   required: "This is required",
                 })}
               />
-              <FormLabel htmlFor="tc" className="mt-4">
-                TC.NO
+              <FormLabel htmlFor="name" className="mt-4">
+                Restaurant User Last Name
               </FormLabel>
               <Input
-                id="tc"
-                placeholder="Enter Restaurant Name"
-                type="number"
-                {...register("tc", {
+                id="user_last_name"
+                placeholder="Enter Restaurant Owner Name"
+                type="text"
+                {...register("user_last_name", {
                   required: "This is required",
-                  minLength: {
-                    value: 11,
-                    message: "TC.NO must be 11 digits",
-                  },
                 })}
               />
 

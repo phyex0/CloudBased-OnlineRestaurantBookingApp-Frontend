@@ -79,18 +79,23 @@ const UserHeader = () => {
             </a>
             <div className={styles.headerText}>
               <HiUser size={18} />
-              <Oauth2Login />
+              {localStorage.getItem("token") ? "Admin" : <Oauth2Login />}
             </div>
 
             {/* burada modal açman gerekebilir register modal */}
+            <Link to="/user/register" className={styles.headerText}>
+              <HiUserAdd size={19} />
+              Kayıt ol
+            </Link>
+
             <button
               onClick={() => {
-                openRegisterModal(true);
+                localStorage.removeItem("token");
+                window.location.reload();
               }}
               className={styles.headerText}
             >
-              <HiUserAdd size={19} />
-              Kayıt ol
+              Çıkış Yap
             </button>
           </nav>
         </div>

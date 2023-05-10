@@ -1,0 +1,19 @@
+.container {
+    @apply
+    flex flex-col
+}
+
+.name {
+    @apply
+    font-bold text-xl
+}
+
+.description {
+    @apply
+    text-lg
+}
+
+.price {
+    @apply
+    font-semibold text-lg
+}

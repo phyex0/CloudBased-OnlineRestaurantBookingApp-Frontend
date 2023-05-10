@@ -94,7 +94,7 @@ const RestaurantLogin = () => {
         </div>
       </form> */}
       <div className="flex flex-col items-center justify-center gap-2 w-full md:w-1/2">
-        <Oauth2Login />
+        <Oauth2Login type="restaurant" />
         <Link
           as={RouterLink}
           to="/restaurant/register"

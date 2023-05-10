@@ -73,10 +73,10 @@ const UserHeader = () => {
             </button>
           </nav>
           <nav className={styles.headerGroup}>
-            <a href="#" className={styles.headerText}>
+            {/* <a href="#" className={styles.headerText}>
               <FiGlobe size={18} />
               Türkçe (TR)
-            </a>
+            </a> */}
             <div className={styles.headerText}>
               <HiUser size={18} />
               {localStorage.getItem("token") ? "Admin" : <Oauth2Login />}

@@ -83,7 +83,7 @@ function Campaigns() {
         className={[styles.container, "sm:container"].join(" ")}
         style={{ width: width < 640 ? width : "" }}
       >
-        <div className="flex flex-row items-center mb-1">
+        <div className={styles.campaignsIconRow}>
           <FaGift className={styles.campaignIcon} />
           <h3 className={styles.campaignsText}>Kampanyalar</h3>
         </div>

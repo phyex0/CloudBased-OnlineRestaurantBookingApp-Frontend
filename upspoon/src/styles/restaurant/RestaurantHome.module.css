@@ -1,0 +1,25 @@
+.container {
+    @apply
+    px-4 md:px-10
+    flex flex-col
+}
+
+.menuAndProductWrapper {
+    @apply
+    flex flex-col md:flex-row justify-center gap-4
+}
+
+.menuSection {
+    @apply
+    w-full
+}
+
+.title {
+    @apply
+    text-center font-semibold text-2xl mb-3
+}
+
+.modalTitle {
+    @apply
+    text-left font-semibold text-lg
+}

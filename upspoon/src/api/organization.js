@@ -44,6 +44,7 @@ export const updateRestaurant = async (
   );
 };
 
+// headers silinecek
 export const createOrganization = async (
   organizationAndRestaurantUserObj = {
     newOrganizationDTO: {
@@ -65,7 +66,13 @@ export const createOrganization = async (
 ) => {
   return await resolve(
     axios
-      .post(organizationUrl, organizationAndRestaurantUserObj)
+      .post(organizationUrl, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        ...organizationAndRestaurantUserObj,
+      })
       .then((res) => res.data)
   );
 };

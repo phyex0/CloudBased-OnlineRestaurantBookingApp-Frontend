@@ -42,7 +42,8 @@
     gap-x-8
     hidden
     sm:flex
-    bg-red-800 
+    bg-green-400
+    p-2
 }
 
 .logoMark{
@@ -64,8 +65,11 @@
 
 .subtitleHeader{
     @apply
-    bg-green-800 
+    bg-green-400 
     flex 
     h-8
     items-center 
+    text-white
+    font-semibold
+    pl-24
 }

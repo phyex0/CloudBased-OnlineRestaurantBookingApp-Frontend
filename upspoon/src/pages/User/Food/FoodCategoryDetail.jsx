@@ -98,7 +98,6 @@ const FoodCategoryDetail = () => {
                                 <img src={product.image} alt={product.name} className="w-full object-cover h-48" />
                                 <div className="p-4">
                                     <h3 className="text-lg font-medium mb-2">{product.name}</h3>
-                                    <p className="text-gray-600 text-sm mb-2">{product.description}</p>
                                     <p className="text-green-500 text-lg font-medium">{product.price} TL</p>
                                 </div>
                             </div>

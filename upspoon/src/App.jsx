@@ -25,6 +25,7 @@ import RestaurantRegister from "./pages/Restaurant/Register";
 import RestaurantLogin from "./pages/Restaurant/Login";
 import AuthLayout from "./layouts/AuthLayout";
 import UserFoodLayout from "./layouts/UserFoodLayout";
+import BookingDetail from "./pages/User/Food/BookingDetail";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -47,7 +48,11 @@ const router = createBrowserRouter(
             <Route index path=':name' element={<FoodCategoryDetail />} />
             <Route path='detail/:name/:food_name' element={<FoodDetail />} />
           </Route>
-          <Route path="/user/booking" element={<UserBooking />} />
+          <Route
+            path='/user/booking'
+            element={<BookingDetail />}>
+            <Route index path=':name' element={<BookingDetail />} />
+          </Route>
         </Route>
       </Route>
 

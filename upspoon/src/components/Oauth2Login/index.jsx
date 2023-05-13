@@ -13,7 +13,7 @@ const Oauth2Login = ({ className, type = "", ...props }) => {
   const getAccessToken = (responseCode) => {
     axios
       .post(
-        "http://192.168.1.102:9000/oauth2/token",
+        "http://85a25e5d2b66a01467e93f8d28f9ee14c4-593053229.us-east-1.elb.amazonaws.com/oauth2/token",
         querystring.stringify({
           grant_type: "authorization_code",
           code: responseCode,
@@ -43,7 +43,7 @@ const Oauth2Login = ({ className, type = "", ...props }) => {
   return (
     <LoginOAuth2
       clientId="messaging-client"
-      authorizeUri="http://192.168.1.102:9000/oauth2/authorize"
+      authorizeUri="http://85a25e5d2b66a01467e93f8d28f9ee14c4-593053229.us-east-1.elb.amazonaws.com/oauth2/authorize"
       redirectUri="http://127.0.0.1:5173"
       scope="openid"
       responseType="code"

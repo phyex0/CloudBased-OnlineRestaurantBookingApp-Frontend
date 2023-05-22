@@ -230,7 +230,7 @@ export const createOrder = async (
 
 export const getProducts = async (
   organizationId,
-  menuId,
+  menuID,
   pageableObj = {
     page: 0,
     size: 1,
@@ -245,7 +245,7 @@ export const getProducts = async (
         },
         params: {
           organizationId,
-          menuId,
+          menuID,
           ...pageableObj,
         },
       })

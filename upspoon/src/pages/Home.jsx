@@ -5,13 +5,18 @@ import UpButton from "../components/UpButton";
 import homeBg from "../assets/images/home-bg.png";
 import Footer from "../components/Footer";
 import Oauth2Login from "../components/Oauth2Login";
-import { getOrganizationsByBusinessType } from "../api/order";
+import {
+  getOrderHistory,
+  getOrganizationsByBusinessType,
+  getProducts,
+} from "../api/order";
 
 const Home = () => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     runApi();
+    runApi2();
   }, []);
 
   const runApi = async () => {
@@ -21,6 +26,19 @@ const Home = () => {
     });
 
     console.log("api response: ", response);
+  };
+
+  const runApi2 = async () => {
+    let response = await getProducts(
+      "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+      "eef064e9-30d7-4f49-8a73-79b60566945b",
+      {
+        page: 0,
+        size: 1,
+      }
+    );
+
+    console.log("api2 response: ", response);
   };
 
   /*
@@ -68,6 +86,8 @@ const Home = () => {
               Upspoon is always with you to order food easily. A fast,
               effective, inexpensive solution!
             </h4>
+
+            <Oauth2Login />
 
             <UpButton
               href="/user"

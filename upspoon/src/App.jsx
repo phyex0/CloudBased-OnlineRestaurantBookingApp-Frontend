@@ -15,8 +15,6 @@ import Restaurant from "./pages/Restaurant/Restaurant";
 import RestaurantSettings from "./pages/Restaurant/Settings";
 import UserLayout from "./layouts/UserLayout";
 import User from "./pages/User/User";
-import UserBooking from "./pages/User/Food/Booking";
-import UserFood from "./pages/User/Food/Food";
 import FoodCategoryDetail from "./pages/User/Food/FoodCategoryDetail";
 import FoodDetail from "./pages/User/Food/FoodDetail";
 import UserLogin from "./pages/User/Login";
@@ -25,6 +23,8 @@ import RestaurantRegister from "./pages/Restaurant/Register";
 import RestaurantLogin from "./pages/Restaurant/Login";
 import AuthLayout from "./layouts/AuthLayout";
 import UserFoodLayout from "./layouts/UserFoodLayout";
+import UserBookingLayout from "./layouts/UserBookingLayout";
+import Booking from "./pages/User/Food/Booking";
 import BookingDetail from "./pages/User/Food/BookingDetail";
 
 const router = createBrowserRouter(
@@ -50,7 +50,8 @@ const router = createBrowserRouter(
           </Route>
           <Route
             path='/user/booking'
-            element={<BookingDetail />}>
+            element={<UserBookingLayout />}>
+            <Route index element={<Booking />} />
             <Route index path=':name' element={<BookingDetail />} />
           </Route>
         </Route>

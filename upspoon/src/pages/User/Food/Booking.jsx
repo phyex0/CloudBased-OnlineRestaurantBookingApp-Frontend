@@ -1,5 +1,5 @@
 import React from "react";
-
+import { Link } from "react-router-dom";
 const restaurants = [
   {
     "name": "Le Comptoir du Relais",
@@ -66,17 +66,19 @@ const UserBooking = () => {
       <h2 className="text-2xl font-bold mb-4 mt-8">Restaurants chosen for you</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {restaurants.map((restaurant) => (
-          <div className="bg-white rounded-lg overflow-hidden shadow-md">
-            <img src={restaurant.image} alt={restaurant.name} className="w-full h-40 object-cover" />
-            <div className="p-4">
-              <h2 className="text-lg font-semibold">{restaurant.name}</h2>
-              <p className="text-gray-600">{restaurant.location}</p>
-              <p className="mt-2 text-sm text-gray-700">{restaurant.description}</p>
+          <Link to={`/user/booking/${restaurant.name}`}>
+            <div className="bg-white rounded-lg overflow-hidden shadow-md">
+              <img src={restaurant.image} alt={restaurant.name} className="w-full h-40 object-cover" />
+              <div className="p-4">
+                <h2 className="text-lg font-semibold">{restaurant.name}</h2>
+                <p className="text-gray-600">{restaurant.location}</p>
+                <p className="mt-2 text-sm text-gray-700">{restaurant.description}</p>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
-      <div>
+      {/* <div>
         <h2 class="text-2xl font-bold my-4">UpSpoon selections</h2>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
           {selections.map((selection) => (
@@ -90,7 +92,7 @@ const UserBooking = () => {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

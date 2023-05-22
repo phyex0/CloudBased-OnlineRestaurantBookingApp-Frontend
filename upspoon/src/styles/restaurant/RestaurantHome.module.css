@@ -16,7 +16,7 @@
 
 .title {
     @apply
-    text-center font-semibold text-2xl mb-3
+    text-center font-semibold text-2xl
 }
 
 .modalTitle {

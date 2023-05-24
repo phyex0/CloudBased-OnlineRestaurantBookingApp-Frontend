@@ -7,6 +7,7 @@ import { MdFastfood } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
 import Oauth2Login from "../Oauth2Login";
 import Modal from "react-modal";
+import { ReactComponent as Basket } from "../../assets/icons/basket.svg";
 
 Modal.setAppElement("#root");
 
@@ -86,6 +87,11 @@ const UserHeader = () => {
             <Link to="/user/register" className={styles.headerText}>
               <HiUserAdd size={19} />
               Kayıt ol
+            </Link>
+
+            <Link to="/user/basket" className={styles.headerText}>
+              <Basket size={19} />
+              Basket
             </Link>
 
             <button

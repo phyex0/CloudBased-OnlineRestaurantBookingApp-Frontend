@@ -26,6 +26,7 @@ import UserFoodLayout from "./layouts/UserFoodLayout";
 import UserBookingLayout from "./layouts/UserBookingLayout";
 import Booking from "./pages/User/Food/Booking";
 import BookingDetail from "./pages/User/Food/BookingDetail";
+import UserBasket from "./pages/User/Basket";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -42,17 +43,17 @@ const router = createBrowserRouter(
       <Route element={<PrivateUserRoutes />}>
         <Route path="/user" element={<UserLayout />}>
           <Route index element={<User />} />
-          <Route
-            path='/user/food'
-            element={<UserFoodLayout />}>
-            <Route index path=':name' element={<FoodCategoryDetail />} />
-            <Route path='detail/:name/:food_name' element={<FoodDetail />} />
+          <Route path="/user/food" element={<UserFoodLayout />}>
+            <Route index path=":name" element={<FoodCategoryDetail />} />
+            <Route path="detail/:name/:food_name" element={<FoodDetail />} />
           </Route>
-          <Route
-            path='/user/booking'
-            element={<UserBookingLayout />}>
+          <Route path="/user/booking" element={<UserBookingLayout />}>
             <Route index element={<Booking />} />
-            <Route index path=':name' element={<BookingDetail />} />
+            <Route index path=":name" element={<BookingDetail />} />
+          </Route>
+          <Route path="/user/basket" element={<UserBasket />}>
+            <Route index element={<Booking />} />
+            <Route index path=":name" element={<BookingDetail />} />
           </Route>
         </Route>
       </Route>

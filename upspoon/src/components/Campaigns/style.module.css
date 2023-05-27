@@ -8,9 +8,9 @@
 
 .campaignsText{
     @apply
-    text-xl
+    text-2xl
     font-bold
-    text-gray-800
+    text-main
     flex
     items-center
 }
@@ -34,9 +34,10 @@
 
 .campaignIcon{
     @apply
-    h-4
-    w-4 
+    h-6
+    w-6
     mr-2
+    text-main
 }
 
 .campaignsIconRow{

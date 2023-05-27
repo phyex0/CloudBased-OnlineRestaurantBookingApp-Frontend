@@ -13,7 +13,9 @@ module.exports = {
       backgroundImage: {
         homeBg: "url('../src/assets/images/home-bg.png')",
       },
-      colors: {},
+      colors: {
+        main: "#2BA854",
+      },
       backgroundPosition: {},
     },
   },

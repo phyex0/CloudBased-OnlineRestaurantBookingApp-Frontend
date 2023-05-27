@@ -1,0 +1,33 @@
+.container{
+    @apply
+    flex 
+
+    justify-center 
+    items-center 
+    rounded 
+    transition-colors 
+    hover:bg-green-50 
+    flex-col 
+    p-4
+}
+
+.image{
+    @apply
+    w-12 
+    h-12 
+    rounded-lg 
+    border 
+    border-gray-200 
+    object-cover
+}
+
+.title{
+    @apply
+    font-semibold 
+    transition-colors 
+    group-hover:text-green-700 
+    whitespace-nowrap 
+    block 
+    mt-2 
+    text-base
+}

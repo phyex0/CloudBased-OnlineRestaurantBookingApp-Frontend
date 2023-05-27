@@ -27,6 +27,9 @@ import UserBookingLayout from "./layouts/UserBookingLayout";
 import Booking from "./pages/User/Food/Booking";
 import BookingDetail from "./pages/User/Food/BookingDetail";
 import UserBasket from "./pages/User/Basket";
+import { Toaster } from "react-hot-toast";
+import UserFood from "./pages/User/Food/Food";
+import OrderHistory from "./pages/User/Food/OrderHistory";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -43,10 +46,12 @@ const router = createBrowserRouter(
       <Route element={<PrivateUserRoutes />}>
         <Route path="/user" element={<UserLayout />}>
           <Route index element={<User />} />
-          <Route path="/user/food" element={<UserFoodLayout />}>
-            <Route index path=":name" element={<FoodCategoryDetail />} />
-            <Route path="detail/:name/:food_name" element={<FoodDetail />} />
-          </Route>
+
+          <Route path="/user/food" element={<UserFood />} />
+          <Route path="/user/food/:name" element={<FoodCategoryDetail />} />
+          <Route path="/user/food/detail/:name" element={<FoodDetail />} />
+          <Route path="/user/order-history" element={<OrderHistory />} />
+
           <Route path="/user/booking" element={<UserBookingLayout />}>
             <Route index element={<Booking />} />
             <Route index path=":name" element={<BookingDetail />} />
@@ -86,6 +91,7 @@ const App = () => {
   return (
     <AuthProvider>
       <RouterProvider router={router} />
+      <Toaster />
     </AuthProvider>
   );
 };

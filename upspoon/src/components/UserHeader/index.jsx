@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import styles from "./style.module.css";
 import { FiGlobe } from "react-icons/fi";
 import { BiFoodMenu } from "react-icons/bi";
@@ -8,6 +8,7 @@ import { Link, useLocation } from "react-router-dom";
 import Oauth2Login from "../Oauth2Login";
 import Modal from "react-modal";
 import { ReactComponent as Basket } from "../../assets/icons/basket.svg";
+import AuthContext from "../../context/Auth";
 
 Modal.setAppElement("#root");
 
@@ -17,6 +18,8 @@ const UserHeader = () => {
   const [userRegisterModal, setUserRegisterModal] = useState(false);
 
   const location = useLocation();
+
+  const { cartProducts } = useContext(AuthContext);
 
   const crumbs = () => {
     setCrumbAmout(location.pathname.split("/").length);
@@ -89,9 +92,15 @@ const UserHeader = () => {
               Kayıt ol
             </Link>
 
-            <Link to="/user/basket" className={styles.headerText}>
+            <Link
+              to="/user/basket"
+              className={[styles.headerText, "relative"].join(" ")}
+            >
               <Basket size={19} />
-              Basket
+              Cart
+              <span className="absolute -top-2 -right-2.5 font-semibold">
+                {cartProducts.length}
+              </span>
             </Link>
 
             <button
@@ -106,11 +115,11 @@ const UserHeader = () => {
           </nav>
         </div>
       </div>
-      {crumbAmount >= 3 && (
+      {/*crumbAmount >= 3 && (
         <div className={styles.subtitleHeader}>
           <a href="#">{currentTitle}</a>
         </div>
-      )}
+      )*/}
     </>
   );
 };

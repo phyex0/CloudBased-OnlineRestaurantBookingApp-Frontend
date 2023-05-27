@@ -1,23 +1,24 @@
 import CardItem from "../CardItem";
 import styles from "./style.module.css";
 import React, { useState } from "react";
-function Cards() {
+
+const Cards = () => {
   const [cards, setCards] = useState([
     {
-      title: "Her siparişinize bir kampanya",
+      title: "A campaign for every order",
       description:
         'Getir"de vereceğiniz her siparişe uygun bir kampanya bulabilirsiniz.',
       image:
         "https://getir.com/_next/static/images/intro-in-minutes-a7a9238a73013642a6597c4db06653c1.svg",
     },
     {
-      title: "Dakikalar içinde kapınızda",
+      title: "Order in minutes",
       description: "Getir’le siparişiniz dakikalar içinde kapınıza gelir.",
       image:
         "https://getir.com/_next/static/images/intro-market-courier-34cd8b0ca1d547580d506566edfacf8d.svg",
     },
     {
-      title: "Binlerce çeşit mutluluk",
+      title: "Be Happy",
       description:
         "Getir’de binlerce çeşit arasından seçiminizi yapabilirsiniz.",
       image:
@@ -34,6 +35,6 @@ function Cards() {
       </div>
     </>
   );
-}
+};
 
 export default Cards;

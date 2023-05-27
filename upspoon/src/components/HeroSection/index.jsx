@@ -49,9 +49,9 @@ function HeroSection() {
               <img src={upspoonLogo} alt="" width={240} />
             </h3>
             <h3 className={styles.subTitle}>
-              Dakikalar içinde
+              Order
               <br />
-              kapınızda
+              In Minute
             </h3>
           </div>
           <div className={styles.authContainer}>

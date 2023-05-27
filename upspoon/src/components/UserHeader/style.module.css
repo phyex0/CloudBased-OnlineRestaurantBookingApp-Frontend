@@ -42,7 +42,8 @@
     gap-x-8
     hidden
     sm:flex
-    bg-green-400
+    bg-main
+    rounded-md
     p-2
 }
 

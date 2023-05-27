@@ -13,7 +13,7 @@ const Oauth2Login = ({ className, type = "", ...props }) => {
   const getAccessToken = (responseCode) => {
     axios
       .post(
-        "http://a25e5d2b66a01467e93f8d28f9ee14c4-593053229.us-east-1.elb.amazonaws.com/oauth2/token",
+        "http://a10b0652697734cc0af5ec1643e74586-1635581591.us-east-1.elb.amazonaws.com/oauth2/token",
         querystring.stringify({
           grant_type: "authorization_code",
           code: responseCode,
@@ -43,7 +43,7 @@ const Oauth2Login = ({ className, type = "", ...props }) => {
   return (
     <LoginOAuth2
       clientId="upspoon"
-      authorizeUri="http://a25e5d2b66a01467e93f8d28f9ee14c4-593053229.us-east-1.elb.amazonaws.com/oauth2/authorize"
+      authorizeUri="http://a10b0652697734cc0af5ec1643e74586-1635581591.us-east-1.elb.amazonaws.com/oauth2/authorize"
       redirectUri="http://127.0.0.1:5173"
       scope="openid"
       responseType="code"

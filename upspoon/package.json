@@ -23,6 +23,7 @@
     "react-flags-select": "^2.2.3",
     "react-headless-accordion": "^1.0.2",
     "react-hook-form": "^7.43.1",
+    "react-hot-toast": "^2.4.1",
     "react-icons": "^4.7.1",
     "react-modal": "^3.16.1",
     "react-router-dom": "^6.8.1",

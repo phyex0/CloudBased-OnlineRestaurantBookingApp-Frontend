@@ -102,7 +102,7 @@ export const getMenu = async (
   organizationId,
   pageableObj = {
     page: 0,
-    size: 1,
+    size: 200,
   }
 ) => {
   return await resolve(
@@ -155,7 +155,7 @@ export const createMenu = async (
         productName: "",
         description: "",
         price: 0,
-        productImage: "",
+        productImage: "", // base64
       },
     ],
   }
@@ -233,7 +233,7 @@ export const getProducts = async (
   menuID,
   pageableObj = {
     page: 0,
-    size: 1,
+    size: 200,
   }
 ) => {
   return await resolve(
@@ -257,7 +257,7 @@ export const getOrderHistory = async (
   userId,
   pageableObj = {
     page: 0,
-    size: 1,
+    size: 100,
   }
 ) => {
   return await resolve(

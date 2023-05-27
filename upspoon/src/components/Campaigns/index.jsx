@@ -2,10 +2,15 @@ import { useState, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { IoIosArrowBack, IoIosArrowForward, } from "react-icons/io";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { FaGift } from "react-icons/fa";
 import { useWindowWidth } from "@react-hook/window-size";
 import styles from "./style.module.css";
+import FoodOne from "../../assets/images/food-1.webp";
+import FoodTwo from "../../assets/images/food-2.webp";
+import FoodThree from "../../assets/images/food-3.webp";
+import FoodFour from "../../assets/images/food-4.webp";
+import FoodVideo from "../../assets/videos/food-video.mp4";
 
 function NextButton({ onClick, className }) {
   return (
@@ -30,23 +35,19 @@ function Campaigns() {
     setBanners([
       {
         id: 1,
-        image:
-          "https://cdn.getir.com/misc/611e55d33ea65bef40f9ba05_banner_tr_1629378026496.jpeg",
+        image: FoodOne,
       },
       {
         id: 2,
-        image:
-          "https://cdn.getir.com/misc/611e4a50c270af509cd486b5_banner_tr_1629375115516.jpeg",
+        image: FoodTwo,
       },
       {
         id: 3,
-        image:
-          "https://cdn.getir.com/misc/5fb524d4c725f1530045cefc_banner_tr_1609343376255.jpeg",
+        image: FoodThree,
       },
       {
         id: 4,
-        image:
-          "https://cdn.getir.com/misc/6069cee3f7be2b6472dc8b5f_banner_tr_1629921878792.jpeg",
+        image: FoodFour,
       },
     ]);
   }, []);
@@ -83,10 +84,10 @@ function Campaigns() {
         className={[styles.container, "sm:container"].join(" ")}
         style={{ width: width < 640 ? width : "" }}
       >
-        <div className={styles.campaignsIconRow}>
+        {/* <div className={styles.campaignsIconRow}>
           <FaGift className={styles.campaignIcon} />
           <h3 className={styles.campaignsText}>Kampanyalar</h3>
-        </div>
+        </div> */}
         <Slider className={styles.slider} {...settings}>
           {banners &&
             banners.map((banner) => (

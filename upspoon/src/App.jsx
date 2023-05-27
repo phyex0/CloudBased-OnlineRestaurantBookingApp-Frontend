@@ -30,6 +30,7 @@ import UserBasket from "./pages/User/Basket";
 import { Toaster } from "react-hot-toast";
 import UserFood from "./pages/User/Food/Food";
 import OrderHistory from "./pages/User/Food/OrderHistory";
+import RestaurantBooking from "./pages/Restaurant/Booking";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -40,6 +41,7 @@ const router = createBrowserRouter(
         <Route path="/restaurant" element={<RestaurantLayout />}>
           <Route index element={<Restaurant />} />
           <Route path="/restaurant/settings" element={<RestaurantSettings />} />
+          <Route path="/restaurant/booking" element={<RestaurantBooking />} />
         </Route>
       </Route>
 

@@ -149,15 +149,7 @@ export const createMenu = async (
   menuObj = {
     id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
     name: "",
-    productList: [
-      {
-        productCode: "",
-        productName: "",
-        description: "",
-        price: 0,
-        productImage: "", // base64
-      },
-    ],
+    productList: null,
   }
 ) => {
   return await resolve(

@@ -12,8 +12,9 @@ import Menu from "../../components/Menu";
 import Modal from "react-modal";
 import { Input } from "@chakra-ui/react";
 import { ReactComponent as Close } from "../../assets/icons/close.svg";
-import { set } from "react-hook-form";
+import { errorMessage, successMessage } from "../../helpers/toast";
 
+/*
 let fakeMenu = {
   content: [
     {
@@ -93,12 +94,17 @@ let fakeProductList = {
   numberOfElements: 0,
   empty: true,
 };
+*/
 
 const Restaurant = () => {
   const [restaurantMenus, setRestaurantMenus] = useState([]);
   const [addProductModalIsOpen, setAddProductModalIsOpen] = useState(false);
   const [activeMenuData, setActiveMenuData] = useState(null);
   const [addMenuModal, setAddMenuModal] = useState(false);
+
+  const [organizationId, setOrganizationId] = useState(
+    "2d0f0a27-70b9-4f67-8fad-c4a449b9e9f9"
+  );
 
   // product
   const [product, setProduct] = useState({
@@ -111,61 +117,58 @@ const Restaurant = () => {
 
   const [menu, setMenu] = useState({
     menuName: "",
-    productCode: "",
-    productName: "",
-    description: "",
-    price: 0,
-    productImage: "",
+    // productCode: "",
+    // productName: "",
+    // description: "",
+    // price: 0,
+    // productImage: "",
   });
 
-  const { organizationId } = useContext(AuthContext);
-
   useEffect(() => {
-    if (organizationId) {
-      getRestaurantMenu();
-    }
-  }, [organizationId]);
+    getRestaurantMenu();
+  }, []);
 
   const getRestaurantMenu = async () => {
-    /*let { data, error } = await getMenu(organizationId, {
-      page: 0,
-      size: 1,
-    });
-    */
-    console.log("fake: ", fakeMenu.content);
-    setRestaurantMenus(fakeMenu?.content);
+    try {
+      let response = await getMenu(organizationId);
+      console.log("get menu response: ", response);
+
+      setRestaurantMenus(response?.data?.content);
+    } catch (err) {
+      errorMessage("There is an error while getting menu.");
+    }
   };
 
   const addProductToMenu = async () => {
-    console.log("organizationId: ", organizationId);
-    console.log("activeMenuData.id: ", activeMenuData.id);
-    console.log("product: ", product);
-
-    let { data, error } = await createProduct(
-      organizationId,
-      activeMenuData.id,
-      product
-    );
-
-    console.log("data: ", data);
-    console.log("error: ", error);
-
-    setAddProductModalIsOpen(false);
+    console.log("add product to menu: ", activeMenuData.id);
+    try {
+      let response = await createProduct(
+        organizationId,
+        activeMenuData.id,
+        product
+      );
+      console.log("add product to menu response: ", response);
+    } catch (err) {
+      errorMessage("There is an error while adding product to menu.");
+    } finally {
+      setAddProductModalIsOpen(false);
+    }
   };
 
   const addMenu = async () => {
-    console.log("organizationId: ", organizationId);
-    console.log("menu: ", menu);
-
-    let { data, error } = await createMenu(organizationId, {
-      name: menu.menuName,
-      productList: [menu],
-    });
-
-    console.log("data: ", data);
-    console.log("error: ", error);
-
-    setAddProductModalIsOpen(false);
+    try {
+      let response = await createMenu(organizationId, {
+        name: menu.menuName,
+        productList: [menu],
+      });
+      console.log("add menu response: ", response);
+      successMessage("Menu created successfully.");
+      getRestaurantMenu();
+    } catch (err) {
+      errorMessage("There is an error while creating menu.");
+    } finally {
+      setAddMenuModal(false);
+    }
   };
 
   return (
@@ -243,7 +246,7 @@ const Restaurant = () => {
         </div>
 
         <button
-          className="border rounded-md px-3 py-2 mr-auto mt-4 font-semibold bg-blue-600 text-white"
+          className="border rounded-md px-3 py-2 mr-auto mt-4 font-semibold bg-main text-white"
           onClick={() => {
             addProductToMenu();
           }}
@@ -290,7 +293,7 @@ const Restaurant = () => {
             />
           </div>
 
-          <h4 className="font-semibold mt-4 mb-1 text-lg">Menüye Ürün Ekle</h4>
+          {/* <h4 className="font-semibold mt-4 mb-1 text-lg">Menüye Ürün Ekle</h4>
 
           <div className="flex flex-col gap-1">
             <p className={styles.modalTitle}>Product Code</p>
@@ -338,11 +341,11 @@ const Restaurant = () => {
                 setMenu({ ...menu, price: e.target.value });
               }}
             />
-          </div>
+          </div> */}
         </div>
 
         <button
-          className="border rounded-md px-3 py-2 mr-auto mt-4 font-semibold bg-blue-600 text-white"
+          className="border rounded-md px-3 py-2 mr-auto mt-4 font-semibold bg-main text-white"
           onClick={() => {
             addMenu();
           }}
@@ -357,9 +360,9 @@ const Restaurant = () => {
       </Modal>
       <div className={styles.menuSection}>
         <div className="flex justify-between items-center mb-4">
-          <h4 className={styles.title}>My Restaurant Menu</h4>
+          <h4 className={styles.title}>{organizationId} Menu</h4>
           <button
-            className="border rounded-md px-3 py-2 font-semibold bg-blue-600 text-white"
+            className="border rounded-md px-3 py-2 font-semibold bg-main text-white"
             onClick={() => {
               setAddMenuModal(true);
             }}

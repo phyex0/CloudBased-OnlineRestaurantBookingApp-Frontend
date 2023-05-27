@@ -18,7 +18,7 @@ const Menu = ({ menuData, addProduct = () => {}, ...props }) => {
         </div>
       </div>
       <button
-        className="border rounded-md px-3 py-2 mr-auto mt-4 font-semibold bg-blue-600 text-white"
+        className="border rounded-md px-3 py-2 mr-auto mt-4 font-semibold bg-main text-white"
         onClick={() => {
           addProduct(menuData);
         }}

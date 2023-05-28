@@ -128,6 +128,19 @@ const Restaurant = () => {
     getRestaurantMenu();
   }, []);
 
+  const handleProductImageInputChange = (event) => {
+    const file = event.target.files[0];
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result;
+        setProduct({ ...product, productImage: base64String });
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const getRestaurantMenu = async () => {
     try {
       let response = await getMenu(organizationId);
@@ -148,10 +161,12 @@ const Restaurant = () => {
         product
       );
       console.log("add product to menu response: ", response);
+      successMessage("Product added to menu successfully.");
     } catch (err) {
       errorMessage("There is an error while adding product to menu.");
     } finally {
       setAddProductModalIsOpen(false);
+      getRestaurantMenu();
     }
   };
 
@@ -243,7 +258,21 @@ const Restaurant = () => {
               }}
             />
           </div>
+
+          <div className="flex flex-col gap-1">
+            <p className={styles.modalTitle}>Product Image</p>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleProductImageInputChange}
+              width={100}
+            />
+          </div>
+          {product.productImage && (
+            <img src={product.productImage} alt="Product Image" />
+          )}
         </div>
+        <p>{activeMenuData?.id}</p>
 
         <button
           className="border rounded-md px-3 py-2 mr-auto mt-4 font-semibold bg-main text-white"

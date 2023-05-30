@@ -43,7 +43,7 @@ const Oauth2Login = ({ className, type = "", ...props }) => {
   return (
     <LoginOAuth2
       clientId="upspoon"
-      authorizeUri={`${url_auth}/oauth2/token`}
+      authorizeUri={`${url_auth}/oauth2/authorize`}
       redirectUri="http://127.0.0.1:5173"
       scope="openid"
       responseType="code"

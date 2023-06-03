@@ -8,6 +8,10 @@ export const getUser = async (mail) => {
   return await resolve(
     axios
       .get(userUrl, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
         params: {
           mail,
         },
@@ -87,7 +91,7 @@ export const createUser = async (
 ) => {
   return await resolve(
     axios
-      .put(`${userUrl}/create`, userObj, {
+      .post(`${userUrl}/create`, userObj, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${localStorage.getItem("token")}`,

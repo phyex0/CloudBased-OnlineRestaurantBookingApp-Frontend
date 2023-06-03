@@ -3,12 +3,17 @@ import LoginOAuth2 from "@okteto/react-oauth2-login";
 import axios from "axios";
 import * as querystring from "querystring";
 import AuthContext from "../../context/Auth";
-import { authUrl } from "../../constants/apiUrl";
+import { authUrl, redirectUrl } from "../../constants/apiUrl";
+import jwt_decode from "jwt-decode";
+import { useNavigate } from "react-router-dom";
 
 const Oauth2Login = ({ className, type = "", ...props }) => {
   const onSuccess = (response) => getAccessToken(response.code);
   const onFailure = (response) => console.error(response);
-  const { setIsAuthUser, setIsAuthRestaurant } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const { setAuth } = useContext(AuthContext);
 
   const getAccessToken = (responseCode) => {
     axios
@@ -19,7 +24,7 @@ const Oauth2Login = ({ className, type = "", ...props }) => {
           code: responseCode,
           client_id: "upspoon",
           client_secret: "secret",
-          redirect_uri: "http://127.0.0.1:5173",
+          redirect_uri: redirectUrl,
         }),
         {
           headers: {
@@ -27,15 +32,34 @@ const Oauth2Login = ({ className, type = "", ...props }) => {
           },
         }
       )
-      .then((response) => {
-        console.log("response: ", response);
-        localStorage.setItem("token", response?.data?.access_token);
-        setIsAuthUser(true);
-        if (type == "restaurant") {
-          console.log("yep");
-          setIsAuthRestaurant(true);
+      .then(async (response) => {
+        console.log("login response: ", response);
+        let token = response?.data?.access_token;
+        let decodedData = jwt_decode(token);
+        console.log("decoded data: ", decodedData);
+
+        let role = decodedData.roles[0]; // USER_ROLE, BUSINESS_ROLE, ORGANIZATION_ROLE, ADMIN_ROLE
+        let email = decodedData?.sub;
+
+        localStorage.setItem("token", token);
+        localStorage.setItem("role", role);
+        localStorage.setItem("email", email);
+
+        setAuth({
+          role: role,
+          token: token,
+          email: email,
+        });
+
+        if (role === "USER_ROLE") {
+          navigate("/user");
+        } else if (role === "BUSINESS_ROLE" || role === "ORGANIZATION_ROLE") {
+          navigate("/restaurant");
+        } else if (role === "ADMIN_ROLE") {
+          navigate("/user");
+        } else {
+          navigate("/user");
         }
-        window.location.reload();
       })
       .catch((error) => console.log(error));
   };
@@ -44,12 +68,12 @@ const Oauth2Login = ({ className, type = "", ...props }) => {
     <LoginOAuth2
       clientId="upspoon"
       authorizeUri={`${authUrl}/oauth2/authorize`}
-      redirectUri="http://127.0.0.1:5173"
+      redirectUri={redirectUrl}
       scope="openid"
       responseType="code"
       onSuccess={onSuccess}
       onFailure={onFailure}
-      buttonText="Giriş Yap"
+      buttonText="Start Ordering"
       className={className}
     />
   );

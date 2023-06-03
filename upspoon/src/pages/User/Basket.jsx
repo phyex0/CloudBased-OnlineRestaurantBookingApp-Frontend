@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useWindowWidth } from "@react-hook/window-size";
 import styles from "../../styles/user/Basket.module.css";
 import { ReactComponent as Trash } from "../../assets/icons/trash.svg";
@@ -7,24 +7,60 @@ import { createOrder } from "../../api/order";
 import { errorMessage, successMessage } from "../../helpers/toast";
 import AuthContext from "../../context/Auth";
 import Food5 from "../../assets/images/food-5.webp";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { getUser } from "../../api/user";
+import { getRestaurantUserByEmail } from "../../api/restaurant-user";
+import { ReactComponent as ArrowRight } from "../../assets/icons/arrow-right.svg";
 
 const UserBasket = () => {
   const [loadingOrder, setLoadingOrder] = useState(false);
+  const [userId, setUserId] = useState(null);
 
   const width = useWindowWidth();
 
   const navigate = useNavigate();
 
-  const { cartProducts, removeProductFromCart, removeAllProductsFromCart } =
-    useContext(AuthContext);
+  const {
+    auth,
+    cartProducts,
+    removeProductFromCart,
+    removeAllProductsFromCart,
+  } = useContext(AuthContext);
+
+  useEffect(() => {
+    getUserId();
+  }, []);
+
+  const getUserId = async () => {
+    let email = localStorage.getItem("email");
+    let response = await getUser(email);
+    setUserId(response?.data?.id);
+  };
+
+  /*
+  const getUserId = async () => {
+    let role = localStorage.getItem("role");
+    let email = localStorage.getItem("email");
+    if (role === "BUSINESS_ROLE" || role === "ORGANIZATION_ROLE") {
+      let response = await getRestaurantUserByEmail(email);
+      console.log("resutaurnt id response: ", response);
+      setUserId(response?.data?.id);
+    } else if (role === "USER_ROLE") {
+      let response = await getUser(email);
+      console.log("user id response: ", response);
+      setUserId(response?.data?.id);
+    }
+  };
+
+  */
 
   const approveCart = async () => {
     setLoadingOrder(true);
+    let productIds = cartProducts.map((product) => product.id);
     try {
       let response = await createOrder({
-        userId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-        productId: ["3fa85f64-5717-4562-b3fc-2c963f66afa6"],
+        userId: userId,
+        productId: productIds,
         orderStatus: "ORDER_CREATED",
         orderNote: "",
       });
@@ -48,13 +84,13 @@ const UserBasket = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col items-center">
       {loadingOrder && <MiniLoading />}
       {cartProducts.length == 0 ? (
         <div className="flex flex-col text-center items-center mt-4 w-full md:w-1/2 ml-auto mr-auto">
-          <h2 className="font-semibold text-xl">Sepetin şu an boş</h2>
+          <h2 className="font-semibold text-xl">Your cart is empty now</h2>
           <p className="mt-2">
-            Sepetini Upspoon'un fırsatlarla dolu dünyasından doldur!
+            Fill up your cart from Upspoon's world full of opportunities!
           </p>
         </div>
       ) : (
@@ -119,6 +155,13 @@ const UserBasket = () => {
           </div>
         </div>
       )}
+      <Link
+        to="/user/order-history"
+        className="mt-4 font-semibold text-xl flex items-center"
+      >
+        <span className="mr-2">Order History</span>
+        <ArrowRight width="22" height="22" className="text-black" />
+      </Link>
     </div>
   );
 };

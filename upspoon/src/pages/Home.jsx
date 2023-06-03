@@ -1,71 +1,11 @@
-import { useState, useEffect } from "react";
 import styles from "../styles/Home.module.css";
 import IconCover from "../components/IconCover";
 import UpButton from "../components/UpButton";
 import homeBg from "../assets/images/home-bg.png";
 import Footer from "../components/Footer";
 import Oauth2Login from "../components/Oauth2Login";
-import {
-  getOrderHistory,
-  getOrganizationsByBusinessType,
-  getProducts,
-} from "../api/order";
 
 const Home = () => {
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    runApi();
-    runApi2();
-  }, []);
-
-  const runApi = async () => {
-    let response = await getOrganizationsByBusinessType("RESTAURANT", {
-      page: 0,
-      size: 1,
-    });
-
-    console.log("api response: ", response);
-  };
-
-  const runApi2 = async () => {
-    let response = await getProducts(
-      "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-      "eef064e9-30d7-4f49-8a73-79b60566945b",
-      {
-        page: 0,
-        size: 1,
-      }
-    );
-
-    console.log("api2 response: ", response);
-  };
-
-  /*
-  useEffect(() => {
-    apiCon();
-  }, []);
-
-  const apiCon = async () => {
-    console.log("tokenim: ", localStorage.getItem("token"));
-    try {
-      const response = await fetch(
-        "http://192.168.1.102:8080/order-service/api/business?businessTypes=MARKET&page=0&size=1",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${localStorage.getItem("token")}}`,
-          },
-        }
-      );
-      console.log("response: ", response.json());
-    } catch (error) {
-      console.log("APİCON: ", error);
-    }
-  };
-  */
-
   return (
     <>
       <div className={styles.container}>
@@ -87,13 +27,13 @@ const Home = () => {
               effective, inexpensive solution!
             </h4>
 
-            <Oauth2Login />
+            <Oauth2Login className={[styles.orderButton].join(" ")} />
 
             <UpButton
-              href="/user"
-              className={[styles.orderButton, "mt-10"].join(" ")}
+              href="/user/register"
+              className="mt-4 bg-gray-100 rounded-md px-3 py-2"
             >
-              Start Ordering!
+              Register User
             </UpButton>
           </div>
 
@@ -124,7 +64,10 @@ const Home = () => {
               You can join our family now and become one of our business
               partners with great advantages.
             </p>
-            <UpButton href="/restaurant" className={styles.bePartnerButton}>
+            <UpButton
+              href="/restaurant/register"
+              className={styles.bePartnerButton}
+            >
               Be Partner
             </UpButton>
           </div>

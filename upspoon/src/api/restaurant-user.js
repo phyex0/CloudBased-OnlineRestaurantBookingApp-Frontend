@@ -8,7 +8,7 @@ export const getAllUsers = async (
   organizationId,
   pageableObj = {
     page: 0,
-    size: 1,
+    size: 200,
   }
 ) => {
   return await resolve(
@@ -84,6 +84,22 @@ export const deleteUser = async (userId) => {
         },
         params: {
           userId,
+        },
+      })
+      .then((res) => res.data)
+  );
+};
+
+export const getRestaurantUserByEmail = async (mail) => {
+  return await resolve(
+    axios
+      .get(`${restaurantUserUrl}/find-by-mail`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        params: {
+          mail,
         },
       })
       .then((res) => res.data)

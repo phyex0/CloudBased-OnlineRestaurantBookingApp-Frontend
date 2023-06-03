@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   FormErrorMessage,
@@ -6,17 +6,10 @@ import {
   FormControl,
   Input,
   Button,
-  InputGroup,
-  InputRightElement,
   Link,
 } from "@chakra-ui/react";
-import { Select, CreatableSelect, AsyncSelect } from "chakra-react-select";
+import { Select } from "chakra-react-select";
 import { Link as RouterLink } from "react-router-dom";
-import {
-  groupedProvinces,
-  groupedStreets,
-  groupedTownships,
-} from "../../helpers/data";
 import homeBg from "../../assets/images/home-bg.png";
 import { createOrganization } from "../../api/organization";
 
@@ -30,22 +23,20 @@ const RestaurantRegister = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [businessType, setBusinessType] = useState(null);
 
-  const handleClickPassword = () => setShowPassword(!showPassword);
-
   const onSubmit = async (values) => {
     console.log("values: ", values);
     console.log("businessType: ", businessType);
 
     let { data, error } = await createOrganization({
       newOrganizationDTO: {
-        organizationId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        organizationId: "",
         organizationName: values?.organization_name,
         packageService: values?.package_service,
         fullAddress: values?.full_address,
         businessTypes: businessType?.value,
       },
       newRestaurantUserDTO: {
-        userId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        userId: "",
         name: values?.user_name,
         lastName: values?.user_last_name,
         middleName: "",
@@ -201,7 +192,7 @@ const RestaurantRegister = () => {
           </Button>
           <Link
             as={RouterLink}
-            to="/restaurant/login"
+            to="/"
             className="text-center mt-4 font-semibold text-base"
           >
             Login

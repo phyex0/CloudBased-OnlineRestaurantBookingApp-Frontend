@@ -3,25 +3,46 @@ import { useState, useEffect, createContext } from "react";
 const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [isAuthUser, setIsAuthUser] = useState(false);
-  const [isAuthRestaurant, setIsAuthRestaurant] = useState(false);
-  const [organizationId, setOrganizationId] = useState(
-    "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-  );
+  const [auth, setAuth] = useState({
+    role: null,
+    token: null,
+    email: null,
+  });
+
   const [cartProducts, setCartProducts] = useState([]);
 
   useEffect(() => {
-    // const token = localStorage.getItem("token");
-    // if (token) {
-    //   setIsAuthRestaurant(true);
-    //   setOrganizationId("3fa85f64-5717-4562-b3fc-2c963f66afa6");
-    // }
+    const token = localStorage.getItem("token");
+    const role = localStorage.getItem("role");
+    const email = localStorage.getItem("email");
 
+    if (token && role && email) {
+      setAuth({
+        role: role,
+        token: token,
+        email: email,
+      });
+    }
+  }, []);
+
+  useEffect(() => {
     const cartProducts = localStorage.getItem("cartProducts");
     if (cartProducts) {
       setCartProducts(JSON.parse(cartProducts));
     }
   }, []);
+
+  /*
+          if (role === "BUSINESS_ROLE" || role === "ORGANIZATION_ROLE") {
+          let response = await getRestaurantUserByEmail(token, email);
+          console.log("resutaurnt id response: ", response);
+          userId = response?.data?.id;
+        } else if (role === "USER_ROLE") {
+          let response = await getUser(token, email);
+          console.log("user id response: ", response);
+          userId = response?.data?.id;
+        }
+  */
 
   const addProductToCart = async (product) => {
     // add array and localstorage
@@ -56,11 +77,8 @@ export const AuthProvider = ({ children }) => {
   return (
     <AuthContext.Provider
       value={{
-        isAuthUser,
-        isAuthRestaurant,
-        setIsAuthUser,
-        setIsAuthRestaurant,
-        organizationId,
+        auth,
+        setAuth,
         addProductToCart,
         cartProducts,
         removeProductFromCart,

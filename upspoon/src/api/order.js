@@ -202,8 +202,8 @@ export const getOrganization = async (organizationId) => {
 
 export const createOrder = async (
   orderObj = {
-    userId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    productId: ["3fa85f64-5717-4562-b3fc-2c963f66afa6"],
+    userId: "",
+    productId: [""],
     orderStatus: "ORDER_CREATED",
     orderNote: "",
   }
@@ -260,7 +260,7 @@ export const getOrderHistory = async (
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
         params: {
-          userId,
+          "user-id": userId,
           ...pageableObj,
         },
       })
@@ -273,7 +273,7 @@ export const getOrganizationsByBusinessType = async (
   businessTypes,
   pageableObj = {
     page: 0,
-    size: 1,
+    size: 200,
   }
 ) => {
   return await resolve(

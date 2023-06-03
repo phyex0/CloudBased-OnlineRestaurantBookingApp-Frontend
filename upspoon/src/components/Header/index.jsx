@@ -1,5 +1,3 @@
-import ThemeSwitcher from "../ThemeSwitcher/ThemeSwitcher";
-import { ReactComponent as ArrowRight } from "../../icons/ArrowRight.svg";
 import { Link } from "@chakra-ui/react";
 import { Link as RouterLink } from "react-router-dom";
 import styles from "./style.module.css";

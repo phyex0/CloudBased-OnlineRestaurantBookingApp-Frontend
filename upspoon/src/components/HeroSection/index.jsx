@@ -55,7 +55,12 @@ function HeroSection() {
             </h3>
           </div>
           <div className={styles.authContainer}>
-            <h3 className={styles.authText}>Giriş yap veya kayıt ol</h3>
+            {localStorage.getItem("token") ? (
+              <h3 className={styles.authText}>Start Ordering</h3>
+            ) : (
+              <h3 className={styles.authText}>Giriş yap veya kayıt ol</h3>
+            )}
+
             <div className={styles.authDiv}>
               {/* <div className={styles.phoneFlag}>
                 <ReactFlagsSelect
@@ -81,6 +86,9 @@ function HeroSection() {
                   className={styles.registerButton}
                   onClick={() => {
                     localStorage.removeItem("token");
+                    localStorage.removeItem("email");
+                    localStorage.removeItem("role");
+
                     window.location.reload();
                   }}
                 >

@@ -10,5 +10,5 @@
 
 .menuName {
     @apply
-    font-bold text-2xl mb-3 border-b pb-1
+    font-bold text-2xl border-b pb-1
 }

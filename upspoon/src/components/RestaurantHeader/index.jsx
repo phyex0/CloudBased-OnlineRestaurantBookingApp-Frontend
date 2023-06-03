@@ -60,6 +60,8 @@ const RestaurantHeader = () => {
             <button
               onClick={() => {
                 localStorage.removeItem("token");
+                localStorage.removeItem("role");
+                localStorage.removeItem("email");
                 window.location.reload();
               }}
               className={styles.headerText}

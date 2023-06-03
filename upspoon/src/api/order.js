@@ -98,13 +98,7 @@ export const deleteProduct = async (organizationId, productId, menuId) => {
   );
 };
 
-export const getMenu = async (
-  organizationId,
-  pageableObj = {
-    page: 0,
-    size: 200,
-  }
-) => {
+export const getMenu = async (organizationId) => {
   return await resolve(
     axios
       .get(`${orderUrl}/menu`, {
@@ -114,7 +108,6 @@ export const getMenu = async (
         },
         params: {
           organizationId,
-          ...pageableObj,
         },
       })
       .then((res) => res.data)

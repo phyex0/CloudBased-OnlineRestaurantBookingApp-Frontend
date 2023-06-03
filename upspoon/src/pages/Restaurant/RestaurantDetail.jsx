@@ -15,6 +15,7 @@ import { ReactComponent as Close } from "../../assets/icons/close.svg";
 import { errorMessage, successMessage } from "../../helpers/toast";
 import { getRestaurantUserByEmail } from "../../api/restaurant-user";
 import { useLocation } from "react-router-dom";
+import { createStock, updateStock } from "../../api/stock";
 
 const RestaurantDetail = () => {
   const [restaurantMenus, setRestaurantMenus] = useState([]);
@@ -22,6 +23,7 @@ const RestaurantDetail = () => {
   const [activeMenuData, setActiveMenuData] = useState(null);
   const [addMenuModal, setAddMenuModal] = useState(false);
   const [organization, setOrganization] = useState([]);
+  const [stockCount, setStockCount] = useState(0);
 
   const location = useLocation();
 
@@ -58,7 +60,7 @@ const RestaurantDetail = () => {
       let response = await getMenu(organizationId);
       console.log("get menu response: ", response);
 
-      setRestaurantMenus(response?.data?.content);
+      setRestaurantMenus(response?.data);
     } catch (err) {
       errorMessage("There is an error while getting menu.");
     }
@@ -72,8 +74,16 @@ const RestaurantDetail = () => {
         activeMenuData.id,
         product
       );
-      console.log("add product to menu response: ", response);
-      successMessage("Product added to menu successfully.");
+      if (response?.error) {
+        errorMessage("There is an error while adding product to menu.");
+      } else {
+        let updateStockResponse = await updateStock(
+          response.data.id,
+          stockCount
+        );
+        console.log("update stock response: ", updateStockResponse);
+        successMessage("Product added to menu successfully.");
+      }
     } catch (err) {
       errorMessage("There is an error while adding product to menu.");
     } finally {
@@ -119,7 +129,7 @@ const RestaurantDetail = () => {
         onRequestClose={() => {
           setAddProductModalIsOpen(false);
         }}
-        className="bg-white relative flex flex-col w-full md:w-1/2 mx-auto mt-20 dark:bg-gray-800 dark:text-white rounded-md shadow-md px-6 py-4"
+        className="bg-white relative flex flex-col w-full md:w-1/2 mx-auto mt-4 dark:bg-gray-800 dark:text-white rounded-md shadow-md px-6 py-4"
         contentLabel="Add Product"
       >
         <button
@@ -130,6 +140,7 @@ const RestaurantDetail = () => {
         >
           <Close width="22" height="22" />
         </button>
+
         <h2>
           Add Product to{" "}
           <span className="font-semibold">{activeMenuData?.name}</span>
@@ -185,16 +196,28 @@ const RestaurantDetail = () => {
           </div>
 
           <div className="flex flex-col gap-1">
+            <p className={styles.modalTitle}>Stock Count</p>
+            <Input
+              placeholder="Enter Stock Count"
+              size="md"
+              value={stockCount}
+              onChange={(e) => {
+                setStockCount(e.target.value);
+              }}
+            />
+          </div>
+
+          <div className="flex flex-col gap-1">
             <p className={styles.modalTitle}>Product Image</p>
             <input
               type="file"
               accept="image/*"
               onChange={handleProductImageInputChange}
-              width={200}
+              width={160}
             />
           </div>
           {product.productImage && (
-            <img src={product.productImage} alt="Product Image" width={200} />
+            <img src={product.productImage} alt="Product Image" width={160} />
           )}
         </div>
 

@@ -11,20 +11,24 @@ const Menu = ({ menuData, addProduct = () => {}, ...props }) => {
     <div className={styles.menuContainer}>
       <div className={styles.productSection}>
         <div className={styles.menusContainer}>
-          <h2 className={styles.menuName}>{menuData?.name}</h2>
-          {menuData?.productList?.map((product) => (
-            <Product productData={product} key={product.productCode} />
-          ))}
+          <div className="flex justify-between w-full items-center mb-3">
+            <h2 className={styles.menuName}>{menuData?.name}</h2>
+            <button
+              className="border rounded-md px-3 py-2 font-semibold bg-main text-white"
+              onClick={() => {
+                addProduct(menuData);
+              }}
+            >
+              Add Product
+            </button>
+          </div>
+          <div className="flex flex-col gap-16">
+            {menuData?.productList?.map((product) => (
+              <Product productData={product} key={product.productCode} />
+            ))}
+          </div>
         </div>
       </div>
-      <button
-        className="border rounded-md px-3 py-2 mr-auto mt-4 font-semibold bg-main text-white"
-        onClick={() => {
-          addProduct(menuData);
-        }}
-      >
-        Add Product
-      </button>
     </div>
   );
 };

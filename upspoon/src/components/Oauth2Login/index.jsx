@@ -3,7 +3,7 @@ import LoginOAuth2 from "@okteto/react-oauth2-login";
 import axios from "axios";
 import * as querystring from "querystring";
 import AuthContext from "../../context/Auth";
-const url_auth = import.meta.env.VITE_API_AUTH
+import { authUrl } from "../../constants/apiUrl";
 
 const Oauth2Login = ({ className, type = "", ...props }) => {
   const onSuccess = (response) => getAccessToken(response.code);
@@ -13,7 +13,7 @@ const Oauth2Login = ({ className, type = "", ...props }) => {
   const getAccessToken = (responseCode) => {
     axios
       .post(
-        `${url_auth}/oauth2/token`,
+        `${authUrl}/oauth2/token`,
         querystring.stringify({
           grant_type: "authorization_code",
           code: responseCode,
@@ -43,7 +43,7 @@ const Oauth2Login = ({ className, type = "", ...props }) => {
   return (
     <LoginOAuth2
       clientId="upspoon"
-      authorizeUri={`${url_auth}/oauth2/authorize`}
+      authorizeUri={`${authUrl}/oauth2/authorize`}
       redirectUri="http://127.0.0.1:5173"
       scope="openid"
       responseType="code"

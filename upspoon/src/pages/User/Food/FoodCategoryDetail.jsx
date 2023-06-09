@@ -88,7 +88,7 @@ const FoodCategoryDetail = () => {
           <h4 className="font-semibold text-lg text-center underline mb-2">
             Menu
           </h4>
-          {menuList.map((menu) => (
+          {menuList?.map((menu) => (
             <button
               key={menu.id}
               className={[
@@ -105,13 +105,12 @@ const FoodCategoryDetail = () => {
         </div>
 
         <div className="grid grid-cols-4 gap-2 w-full px-8">
-          {productList.map((product) => (
+          {productList?.map((product) => (
             <Link
               to={`/user/food/detail/${prettySlug(
                 product.productName
-              )}?menuId=${activeMenu.id}&productId=${
-                product.productCode
-              }&organizationId=${organizationId}`}
+              )}?menuId=${activeMenu.id}&productId=${product.productCode
+                }&organizationId=${organizationId}`}
             >
               <div
                 key={product.productCode}

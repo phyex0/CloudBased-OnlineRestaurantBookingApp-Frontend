@@ -1,7 +1,34 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useParams } from "react-router-dom";
 import ReviewForm from '../../../components/ReviewForm'
+import { getBooks as getBooksAPI } from "../../../api/book";
+import BookingModal from '../../../components/BookModal';
+
 function BookingDetail() {
+
+    const [books, setBooks] = useState(null);
+
+    useEffect(() => {
+        fetchBooks();
+    }, []);
+
+    const fetchBooks = async () => {
+        let businessId = localStorage.getItem("businessId");
+        let response = await getBooksAPI(businessId);
+        console.log("books response: ", response);
+        setBooks(response?.data);
+    };
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const openModal = () => {
+        setIsModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+    };
+
     const reviews = [
         {
             id: 1,
@@ -28,6 +55,7 @@ function BookingDetail() {
     }, []);
     return (
         <div className="bg-gray-100 min-h-screen">
+            <BookingModal isOpen={isModalOpen} onClose={closeModal} />
             <header className="bg-green h-16 flex items-center justify-between px-4">
                 <h1 className="text-green-400 font-bold text-lg ">Restaurant Detail Page</h1>
             </header>
@@ -54,7 +82,10 @@ function BookingDetail() {
                         <div className="mb-4">
                             <span className="font-bold">Hours:</span> Open today · 12:30–3:00 PM, 7:30–11:00 PM
                         </div>
-                        <button className="bg-green-400 text-white py-2 px-4 rounded-md hover:bg-green-800">
+                        <button
+                            className="bg-green-400 text-white py-2 px-4 rounded-md hover:bg-green-800"
+                            onClick={() => { openModal() }}
+                        >
                             Book a table
                         </button>
                     </div>

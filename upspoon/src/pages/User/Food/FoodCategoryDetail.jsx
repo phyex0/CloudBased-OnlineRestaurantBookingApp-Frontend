@@ -49,9 +49,8 @@ const FoodCategoryDetail = () => {
   const getRestaurantMenu = async (organizationId) => {
     try {
       let response = await getMenu(organizationId);
-      console.log("menu response: ", response.data.content);
-      setMenuList(response.data.content);
-      setActiveMenu(response.data.content[0]);
+      setMenuList(response.data);
+      setActiveMenu(response.data[0]);
     } catch (err) {
       errorMessage("Can't get restaurant menu.");
     } finally {

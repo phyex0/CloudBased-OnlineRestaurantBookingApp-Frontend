@@ -39,27 +39,6 @@ const restaurants = [
   },
 ]
 
-const selections = [
-  {
-    id: 'france-top-10',
-    name: "Fransa'nın en iyi restoranları",
-    image: 'https://cdn-blog.thefork.com/static/styles/half_container_xl/public/2021-06/ambiance-560x413.webp?VersionId=sE4i3F8DiCeJ3TaM0Q6DxkFihXm10Y6Y&itok=B35wkbZY',
-    description: 'Fransa\'nın en iyi restoranları listesi.',
-  },
-  {
-    id: 'italy-top-10',
-    name: "İtalya'nın en iyi restoranları",
-    image: 'https://c.tfstatic.com/w_2560,h_480,c_fill,g_center,q_auto,f_auto/restaurant_tag/tag/891/banner_4_marketing/ca982f633de867573d955bd7aeba659e.png',
-    description: 'İtalya\'nın en iyi restoranları listesi.',
-  },
-  {
-    id: 'spain-top-10',
-    name: "İspanya'nın en iyi restoranları",
-    image: 'https://res.cloudinary.com/tf-lab/image/upload/w_1200,c_fill,q_auto,f_auto,b_white/restaurant/2b12a701-8df1-4444-a4d1-9135b467c609/283357ad-52fe-439b-9ac7-66062f08611b.jpg',
-    description: 'İspanya\'nın en iyi restoranları listesi.',
-  }
-];
-
 const UserBooking = () => {
   return (
     <div className="px-4 md:px-6 lg:px-8">

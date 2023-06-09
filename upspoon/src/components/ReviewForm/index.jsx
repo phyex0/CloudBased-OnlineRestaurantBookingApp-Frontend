@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { successMessage } from "../../helpers/toast";
 
 function ReviewForm() {
     const [name, setName] = useState("");
@@ -6,13 +7,7 @@ function ReviewForm() {
     const [comment, setComment] = useState("");
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-        const data = {
-            name: name,
-            email: email,
-            comment: comment,
-        };
-        console.log(data);
+        successMessage("Your review succesfully sended!")
     };
 
     return (
